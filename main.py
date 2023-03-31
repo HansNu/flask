@@ -3,12 +3,12 @@ import pymysql
 import os
 
 app = Flask(__name__)
-mysql = MySQL(app)
 
-app.config['MYSQL_HOST'] = os.environ['MYSQL_HOST']
-app.config['MYSQL_USER'] = os.environ['MYSQL_USER']
-app.config['MYSQL_PASSWORD'] = os.environ['MYSQL_PASSWORD']
-app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
+mysql_host = os.environ.get('MYSQLHOST')
+mysql_port = os.environ.get('MYSQLPORT')
+mysql_user = os.environ.get('MYSQLUSER')
+mysql_password = os.environ.get('MYSQLPASSWORD')
+mysql_database = os.environ.get('MYSQLDATABASE')
 
 # Ruta index (landing page)
 @app.route('/', methods=['GET', 'POST'])
@@ -19,10 +19,12 @@ def index():
 @app.route('/contactos')
 def contactos():
     conn = pymysql.connect(
-        host=app.config['MYSQL_HOST'],
-        user=app.config['MYSQL_USER'],
-        password=app.config['MYSQL_PASSWORD'],
-        db=app.config['MYSQL_DB'],
+        host=mysql_host,
+        port=int(mysql_port),
+        user=mysql_user,
+        password=mysql_password,
+        db=mysql_database,
+        charset='utf8mb4',
         cursorclass=pymysql.cursors.DictCursor
     )
     cur = conn.cursor()
