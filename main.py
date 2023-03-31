@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
+import os
 
 app = Flask(__name__)
 mysql = MySQL(app)
 
-## Configuracion de la BD
-app.config['MYSQL_HOST'] = 'containers-us-west-44.railway.app'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'fzlcof6vvGsTMMyX1EfD'
-app.config['MYSQL_DB'] = 'railway'
+app.config['MYSQL_HOST'] = os.environ['MYSQL_HOST']
+app.config['MYSQL_USER'] = os.environ['MYSQL_USER']
+app.config['MYSQL_PASSWORD'] = os.environ['MYSQL_PASSWORD']
+app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
 
 # Ruta index (landing page)
 @app.route('/', methods=['GET', 'POST'])
