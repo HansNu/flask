@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Version del 10 de marzo del 2023
+	Equipo CHilaquilers
+	Fátima Morales 614571
+	Diego Mejía 569298 
+	Oscar Flores 570390 
+	Hans Nudding 362782
+	-->
+    <meta charset='utf-8'><!-- Permite mostrar todos los caracteres de manera correcta -->
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Nunca Mas</title><!-- Titulo que se va a mostrar en pestaña del navegador -->
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href="{{url_for('static', filename='css/main.css')}}"><!-- Hace referencia al CSS que se va a utilizar para la pagina-->
+	<script src="{{url_for('static', filename='js/codigo.js')}}"></script><!-- Se hace referencia al JS que se va a utilizar para la pagina -->
+    <!-- Enlaces para fuentes de iconos -->
+	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@100&display=swap" rel="stylesheet">
+
+<body>
+    <header>
+	    <nav>
+        <input type="checkbox" id="check"><!-- Checboc que se activa cuando el tamaño se redice a cierto tamaño -->
+        <label for="check" class="checkbtn"><!-- Menu de hamburgesa -->
+            <i class="fas fa-bars"></i><!-- Icono de Menu de hamburgesa-->
+        </label>
+        <a href="/" class="enlace">
+                        <img src="{{url_for('static', filename="images/logoNuncaMas.png")}}" alt="Logo Nunca Mas" class="logo"><!-- Imagen del logo de NUNCA MAS-->
+        </a>
+
+        <ul><!-- Menu de navegacion del sitio -->
+            <li><a href="/">Inicio</a></li><!-- Enlace que nos dirige a la pagina principal del sitio, al ya estar en ese pagina se incluye en la
+                clase active para que se muestre el formato deseado -->
+            <li><a class="active" href="/informate">Infórmate</a></li><!-- Enlace que nos dirice a la pagina "Informate" del sitio-->
+            <li><a href="/test">Test</a></li><!-- Enlace que nos dirige a la pagina "Test" del sitio-->
+            <li><a href="/contactos">Contactos</a></li><!-- Enlace que nos dirige a la pagina "Contactanos" del sitio-->
+        </ul>
+
+
+    </nav>
+  
+    
+  
+</header>
+
+    <div id="miDiv"><p>&nbsp&nbspX</p></div>
+    <script src="js/codigo.js"></script>
+
+    
+</body>
+</html>

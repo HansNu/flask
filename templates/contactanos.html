@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Version del 10 de marzo del 2023
+	Equipo CHilaquilers
+	Fátima Morales 614571
+	Diego Mejía 569298 
+	Oscar Flores 570390 
+	Hans Nudding 362782
+	-->
+    <meta charset='utf-8'><!-- Permite mostrar todos los caracteres de manera correcta -->
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Nunca Mas</title><!-- Titulo que se va a mostrar en pestaña del navegador -->
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}"> 
+	<script src="{{url_for('static', filename='js/codigo.js')}}"></script><!-- Se hace referencia al JS que se va a utilizar para la pagina -->
+    <!-- Enlaces para fuentes de iconos -->
+	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@100&display=swap" rel="stylesheet">
+
+
+<body>
+    <header>
+	    <nav>
+		    <input type="checkbox" id="check"><!-- Checboc que se activa cuando el tamaño se redice a cierto tamaño -->
+			<label for="check" class="checkbtn"><!-- Menu de hamburgesa -->
+				<i class="fas fa-bars"></i><!-- Icono de Menu de hamburgesa-->
+			</label>
+			<a href="/" class="enlace">
+				<img src="{{url_for('static', filename="images/logoNuncaMas.png")}}" alt="Logo Nunca Mas" class="logo"><!-- Imagen del logo de NUNCA MAS-->
+			</a>
+			<ul><!-- Menu de navegacion del sitio -->
+				<li><a href="/">Inicio</a></li><!-- Enlace que nos dirige a la pagina principal del sitio, al ya estar en ese pagina se incluye en la
+					clase active para que se muestre el formato deseado -->
+				<li><a href="/informate">Infórmate</a></li><!-- Enlace que nos dirice a la pagina "Informate" del sitio-->
+				<li><a href="/test">Test</a></li><!-- Enlace que nos dirige a la pagina "Test" del sitio-->
+				<li><a class="active" href="/contactos">Contactos</a></li><!-- Enlace que nos dirige a la pagina "Contactanos" del sitio-->
+			</ul>
+        </nav>
+ 
+	</header>
+
+    <div id="miDiv"><p>&nbsp&nbspX</p></div>
+    <script src="js/codigo.js"></script>
+
+	<!-- El DIV container es el que va a tener toda la infromacion sobre las organizaciones dentro -->
+    <div class="container">
+		<h1>Contactos</h1>
+
+		<!-- El DIV tarjeta es el que tendra la informacion de solamente una organizacion o grupo en particular, este se divide en dos divs "image" e "informacion" -->
+		<!-- Usar Jinja para recibir los datos de la base de datos con la información de las organizaciones-->
+		<!-- Para cada organizacion registrada, crear un div con sus datos -->
+		{% for org in orgs %}
+		<div class="tarjeta">
+			<!-- El DIV image solamente tiene la imagen de la organizacion con su ruta y su texto alternativo en caso de que no se pueda desplegar la imagen-->
+			<div class="image">
+				<img src="{{ url_for('static', filename="images/"+org[8]) }}" alt="Logo {{ org[1] }}">
+			</div>
+			<!-- El DIV info es en donde se va a almacenar toda la informacion sobre la organizacion-->
+			<div class="info">
+				<!-- Dentro del h2 se mostrara el nombre de la organizacion -->
+				<h2>{{ org[1] }}</h2>
+				<h4>{{ org[2] }}</h4>
+				<!-- Dentro del p se mostrara una breve descripcion sobre la organizacion -->
+				<p>{{ org[3] }}
+				</p>
+				<div class="row info_contacto">
+					<div class="col icono"><i class="fa-solid fa-phone"></i></div><!-- Icono de Telefono -->
+					<div class="col">&nbsp;<a  href="tel:+52{{org[5]}}">{{ org[5] }}</a></div><!-- Numero telefonico de la organizacion -->
+				</div>
+					<br>
+				<!-- Dentro de este div se encuentra la informacion del correo electronico de la organizacion-->
+				<div class="row info_contacto">
+					<div class="col icono"><i class="fa-regular fa-envelope"></i></div><!-- Icono de un correo -->
+					<div class="col">&nbsp;{{org[6]}}</div><!-- Correo electronico de la organizacion -->
+				</div>	
+					<br>
+				<!-- Dentro de este div se encunetra la informacion sobre el sitio web de la organizacion -->
+				<div class="row info_contacto">
+					<div class="col icono"><i class="fa-solid fa-globe"></i></div>
+					<!-- Liga que manda al link de la organizacion pero solo se muestra una forma corte del link para que sea mas atractivo visualmente-->
+					<div class="col"><a href="https://www.{{org[7]}}">&nbsp;{{org[7]}}</a></div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+</body>
+</html>

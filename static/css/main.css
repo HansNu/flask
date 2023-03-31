@@ -1,0 +1,505 @@
+/*  Version del 10 de marzo del 2023
+	Equipo CHilaquilers
+	Fátima Morales 614571
+	Diego Mejía 569298 
+	Oscar Flores 570390 
+	Hans Nudding 362782
+*/
+
+
+/* Formato de todos los elementos dentro del HTML */
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+/* Header del Sitio */
+nav{
+    background: white;
+    height: 80px;
+    width: 100%;
+    
+}
+
+/* Posicionamiento del Logo */
+.enlace{
+    position: absolute;
+    padding: 20px 50px;
+    transition: all .5s;
+}
+
+/* Dimensiones y propiedades del Logo */
+.logo{
+    height: 40px;
+    transition: all .5s;
+}
+
+/* Posicionamiento del Menu de Navegacion */
+nav ul{
+    float: right;
+    margin-right: 20px;
+    margin-right: 50px;
+    font-family: 'Roboto';
+}
+
+
+/* Posicionamiento de los elementos del Menu de Navegacion */
+nav ul li{
+    
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+/* Links dentro del menu de navegacion */
+nav ul li a{
+    color: black;
+    font-size: 20px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    transition: 0.5s;
+}
+
+/* Comportamiento del menu de navegacion cuando el mouse estra sobre algun elemento */
+li a.active, li a:hover{
+    background: #003366;
+    transition: 0.5s;
+    color:#F5F5F5;
+}
+
+
+/* Menu de hamburguesa */
+.checkbtn{
+    font-size: 30px;
+    color:#800080;
+    float: left;
+    line-height: 80px;
+    margin-left: 40px;
+    cursor: pointer;
+    display: none;
+    transition: all .5s;
+}
+
+/* Estado del check, por defecto esta desactivada*/
+#check{
+    display: none;  
+}
+
+
+
+
+/* Cambios cuando la pantalla se hace mediana */
+@media (max-width: 925px){
+
+    /* Cambio del tamaño del logo*/
+    .enlace{
+        padding-left: 20px;
+        transition: all .5s;
+    }
+    /* Cambio de tamaño de los elementos dentro del menu de navegacion*/
+    nav ul li a{
+        
+        font-size: 16px;
+        transition: 0.5s;
+        transition: all .5s;
+    }
+    
+    
+}
+
+
+/* Cambios cuando la pantalla se hace de tamaño chica */
+@media (max-width: 600px){
+    .checkbtn{
+        display: block;
+        transition: all .5s;
+    }
+    /* Cambio de tamaño del logo y del posicionamiento */
+    .logo{
+        height: 40px;
+        align-self: center;
+        transition: all .5s;
+    }
+    /* Menu Lateral de navegacion */
+    ul{
+        position: fixed;
+        width: 80%;
+        height: 100vh;
+        background: #6e7072;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    /* Posicionamiento de los elementos dentro del menu desplegable */
+    nav ul li{
+        color: red;
+        display: block;
+        margin: 50px 0;
+        line-height: 50px;
+        transition: all .5s;
+    }
+    /* Caracteristicas de los elementos dentro del menu de navegacion de hamburguesa */
+    nav ul li a{
+        font-size: 20px;
+        transition: all .5s;
+    }
+    /* Comportamiento de los elemntos dentro del menu de navegacion de hamburgesa cuando se hoverean */
+    li a:hover, li a.active{
+        background: none;
+        color: #800080;
+        transition: all .5s;
+    }
+    #check:checked ~ ul{
+        left:0;
+        transition: all .5s;
+    }
+    /* Posicionamiento del logo*/
+    .enlace{
+        margin-left: 20%;
+    }
+    /* Cambia el comportamiento del container */
+    .container {
+		flex-direction: column;
+        transition: all .5s;
+	}
+    /* Comportamiento de las imagenes */
+	.image {
+		margin-right: 0;
+        transition: all .5s;
+	}
+    /* Propiedades de la informacion sobre las organizaciones */
+	.info{
+		width: 90%;
+        transition: all .5s;
+    }
+    /* Cambia el flex-wrap de las tarjetas para que se muestre una debajo de otra*/
+    .tarjeta{
+        flex-wrap: wrap;
+    }
+
+    .izqEmergencia{
+        font-size: 12px;
+       
+    }
+
+
+}
+
+/* DIV que se utiliza para salir del sitio en caso de emergencia 
+Es la X a la derecha del Sitio */
+#miDiv {
+	position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px; 
+    background-color: #800080; 
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    transition: all .5s;
+
+}
+
+
+
+
+/* Donde se almacena toda la informacion sobre las organizaciones a presentar */
+.container {
+	
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	padding: 20px;
+    transition: all .5s;
+   
+	
+	margin-left: 2%;
+	width: 80%; /* Modificamos la propiedad width para que ocupe el 80% del ancho de la pantalla */
+	
+}
+
+/* Donde se muestra la informacion individual de cada organizacion */
+.tarjeta{
+	
+	display: flex;
+	flex-direction: row;
+	
+	justify-content: space-around;
+	align-items: center;
+	margin: 70px 0;
+    transition: all .5s;
+
+	width: 80vw; 
+	
+}
+/* Imagen de la organizacion  */
+.image {
+	width: 50%;
+	max-width: 300px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	width: 210px;
+	height: 210px;
+    transition: all .5s;
+}
+/* Informacion de la organizacion  */
+.info {
+	margin-left: 5%;
+	
+	width: 70%;
+    transition: all .5s;
+	
+	
+}
+
+/* Descripcion de la organizacion*/
+.info p{
+	text-align: justify;
+    margin:10px 0 ;
+}
+/* Informaciond de contacto de la organizacion*/
+.info_contacto{
+    display: flex;
+}
+
+/* Titulo de la pagina */
+.container h1{
+    font-size: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    color:#003366;
+}
+
+/* Iconos del sitio */
+.icono{
+    margin-right: 10px;
+    color:#800080;
+}
+
+/* Links de contacto de las organizaciones */
+.info a{
+    color:black;
+}
+
+/* Cuando se pasa el cursor sobre algun elemento de contacto */
+.info a:hover{
+    color:#800080;
+}
+
+/* Comportamiento del boton laterl derecho cuando se hoverea */
+#miDiv:hover{
+    width: 100px;
+    align-items: center;
+}
+
+
+
+.informacion{
+    margin-left: 5%;
+    margin-right: 10%;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+
+.llamadoEmergencia{
+    width: 100%;
+    height: 50px;
+    
+    display: flex;
+}
+
+
+.izqEmergencia{
+    width: 50%;
+    height: 50px;
+    
+    text-align: right;
+    margin-right: 2.5%;
+    color:#003366;
+   
+}
+
+.derEmergencia{
+    width: 50%;
+    height: 50px;
+  
+    
+}
+
+
+.botonEmergencia{
+    
+    font-size: 1.5em;
+    background-color: purple;
+    color: white;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    margin-right: 5%;
+    margin-left: 2.5%;
+    cursor: pointer;
+
+}
+
+
+.banner{
+    margin-top: 30px;
+    
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    overflow: hidden;
+   
+}
+
+.imgBanner{
+    width: 100%;
+    max-height: 200px;
+
+    width: 100%;
+    height: auto;
+    display: block;
+    
+}
+
+
+.infoInicio{
+    font-size: 18px;
+}
+
+.titulosPagInicio{
+    margin-left: 5%;
+    color:#003366;
+}
+
+#slider {
+    margin: 0 auto;
+    width: 800px;
+    max-width: 100%;
+    text-align: center;
+ }
+ #slider input[type=radio] {
+    display: none;
+ }
+ #slider label {
+    cursor:pointer;
+    text-decoration: none;
+ }
+ #slides {
+    padding: 10px;
+    border: 3px solid #ccc;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+ }
+ #overflow {
+    width: 100%;
+    overflow: hidden;
+ }
+ #slide1:checked ~ #slides .inner {
+    margin-left: 0;
+ }
+ #slide2:checked ~ #slides .inner {
+    margin-left: -100%;
+ }
+ #slide3:checked ~ #slides .inner {
+    margin-left: -200%;
+ }
+ #slide4:checked ~ #slides .inner {
+    margin-left: -300%;
+ }
+ #slides .inner {
+    transition: margin-left 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+    width: 400%;
+    line-height: 0;
+    height: 300px;
+ }
+ #slides .slide {
+    width: 25%;
+    float:left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+ }
+
+
+ #controls {
+    margin: -180px 0 0 0;
+    width: 100%;
+    height: 50px;
+    z-index: 3;
+    position: relative;
+ }
+ #controls label {
+    transition: opacity 0.2s ease-out;
+    display: none;
+    width: 50px;
+    height: 50px;
+    opacity: .4;
+ }
+ #controls label:hover {
+    opacity: 1;
+ }
+ #slide1:checked ~ #controls label:nth-child(2),
+ #slide2:checked ~ #controls label:nth-child(3),
+ #slide3:checked ~ #controls label:nth-child(4) {
+    background: url(https://image.flaticon.com/icons/svg/130/130884.svg) no-repeat;
+    float:right;
+    margin: 0 -50px 0 0;
+    display: block;
+ }
+ #slide1:checked ~ #controls label:nth-last-child(2),
+ #slide2:checked ~ #controls label:nth-last-child(3),
+ #slide3:checked ~ #controls label:nth-last-child(4){
+    background: url(https://image.flaticon.com/icons/svg/130/130882.svg) no-repeat;
+    float:left;
+    margin: 0 0 0 -50px;
+    display: block;
+ }
+ #bullets {
+    margin: 150px 0 0;
+    text-align: center;
+ }
+ #bullets label {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius:100%;
+    background: #ccc;
+    margin: 0 10px;
+ }
+ #slide1:checked ~ #bullets label:nth-child(1),
+ #slide2:checked ~ #bullets label:nth-child(2),
+ #slide3:checked ~ #bullets label:nth-child(3){
+    background: #444;
+ }
+ @media screen and (max-width: 900px) {
+    #slide1:checked ~ #controls label:nth-child(2),
+    #slide2:checked ~ #controls label:nth-child(3),
+    #slide3:checked ~ #controls label:nth-child(4),
+    #slide4:checked ~ #controls label:nth-child(1),
+    #slide1:checked ~ #controls label:nth-last-child(2),
+    #slide2:checked ~ #controls label:nth-last-child(3),
+    #slide3:checked ~ #controls label:nth-last-child(4)
+     {
+       margin: 0;
+    }
+    #slides {
+       max-width: calc(100% - 140px);
+       margin: 0 auto;
+    }
+ }
+
