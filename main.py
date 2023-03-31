@@ -4,11 +4,11 @@ import os
 
 app = Flask(__name__)
 
-mysql_host = os.environ.get('MYSQL_HOST')
-mysql_port = os.environ.get('MYSQL_PORT')
-mysql_user = os.environ.get('MYSQL_USER')
-mysql_password = os.environ.get('MYSQL_PASSWORD')
-mysql_database = os.environ.get('MYSQL_DATABASE')
+mysql_host = os.environ.get('MYSQLHOST')
+mysql_port = os.environ.get('MYSQLPORT')
+mysql_user = os.environ.get('MYSQLUSER')
+mysql_password = os.environ.get('MYSQLPASSWORD')
+mysql_database = os.environ.get('MYSQLDATABASE')
 
 # Ruta index (landing page)
 @app.route('/', methods=['GET', 'POST'])
