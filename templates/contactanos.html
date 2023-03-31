@@ -59,7 +59,7 @@
 		<div class="tarjeta">
 			<!-- El DIV image solamente tiene la imagen de la organizacion con su ruta y su texto alternativo en caso de que no se pueda desplegar la imagen-->
 			<div class="image">
-				<img src="{{ url_for('static', filename='images/' + org.idOrganizacion + '.jpeg') }}" alt="Logo {{ org.nombre }}">
+				<img src="{{ url_for('static', filename='images/' + str(org.idOrganizacion) + '.jpeg') }}" alt="Logo {{ org.nombre }}">
 			</div>
 			<!-- El DIV info es en donde se va a almacenar toda la informacion sobre la organizacion-->
 			<div class="info">
@@ -71,20 +71,20 @@
 				</p>
 				<div class="row info_contacto">
 					<div class="col icono"><i class="fa-solid fa-phone"></i></div><!-- Icono de Telefono -->
-					<div class="col">&nbsp;<a  href="tel:+52{{org.telefono}}">{{ org[5] }}</a></div><!-- Numero telefonico de la organizacion -->
+					<div class="col">&nbsp;<a  href="tel:+52{{str(org.telefono)}}">{{ org.telefono }}</a></div><!-- Numero telefonico de la organizacion -->
 				</div>
 					<br>
 				<!-- Dentro de este div se encuentra la informacion del correo electronico de la organizacion-->
 				<div class="row info_contacto">
 					<div class="col icono"><i class="fa-regular fa-envelope"></i></div><!-- Icono de un correo -->
-					<div class="col">&nbsp;{{org[6]}}</div><!-- Correo electronico de la organizacion -->
+					<div class="col">&nbsp;{{org.correo}}</div><!-- Correo electronico de la organizacion -->
 				</div>	
 					<br>
 				<!-- Dentro de este div se encunetra la informacion sobre el sitio web de la organizacion -->
 				<div class="row info_contacto">
 					<div class="col icono"><i class="fa-solid fa-globe"></i></div>
 					<!-- Liga que manda al link de la organizacion pero solo se muestra una forma corte del link para que sea mas atractivo visualmente-->
-					<div class="col"><a href="https://www.{{org,sitio}}">&nbsp;{{org[7]}}</a></div>
+					<div class="col"><a href="https://www.{{org,sitio}}">&nbsp;{{org.sitio}}</a></div>
 				</div>
 			</div>
 		</div>
