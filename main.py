@@ -19,10 +19,7 @@ def index():
 # Ruta contactos (organizaciones y sus contactos)
 @app.route('/contactos')
 def contactos():
-    conn = pymysql.connect(
-        url=app.config['MYSQL_DATABASE_URL'],
-        cursorclass=pymysql.cursors.DictCursor
-    )
+    conn = pymysql.connect(app.config['MYSQL_DATABASE_URL'])
     cur = conn.cursor()
     cur.execute("SELECT * FROM organizacion")
     orgs = cur.fetchall()
