@@ -32,7 +32,8 @@ def contactos():
     orgs = cur.fetchall()
     conn.close()
     print(orgs)
-    return render_template('contactanos.html', orgs=orgs)
+    return orgs
+#     return render_template('contactanos.html', orgs=orgs)
 
 # Ruta informate
 @app.route('/informate')
