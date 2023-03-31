@@ -5,10 +5,10 @@ app = Flask(__name__)
 mysql = MySQL(app)
 
 ## Configuracion de la BD
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'nmAdmin'
-app.config['MYSQL_PASSWORD'] = '123'
-app.config['MYSQL_DB'] = 'NuncaMas'
+app.config['MYSQL_HOST'] = 'containers-us-west-44.railway.app'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'fzlcof6vvGsTMMyX1EfD'
+app.config['MYSQL_DB'] = 'railway'
 
 # Ruta index (landing page)
 @app.route('/', methods=['GET', 'POST'])
