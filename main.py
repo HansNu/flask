@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from flask_mysqldb import MySQL
+import pymysql
 import os
 
 app = Flask(__name__)
@@ -18,11 +18,17 @@ def index():
 # Ruta contactos (organizaciones y sus contactos)
 @app.route('/contactos')
 def contactos():
-    cur = mysql.connection.cursor()
+    conn = pymysql.connect(
+        host=app.config['MYSQL_HOST'],
+        user=app.config['MYSQL_USER'],
+        password=app.config['MYSQL_PASSWORD'],
+        db=app.config['MYSQL_DB'],
+        cursorclass=pymysql.cursors.DictCursor
+    )
+    cur = conn.cursor()
     cur.execute("SELECT * FROM organizacion")
     orgs = cur.fetchall()
-    cur.connection.commit()
-    cur.close()
+    conn.close()
     print(orgs)
     return render_template('contactanos.html', orgs=orgs)
 
