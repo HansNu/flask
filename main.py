@@ -4,12 +4,11 @@ import os
 
 app = Flask(__name__)
 
-# app.config['MYSQL_HOST'] = os.environ['MYSQL_HOST']
-# app.config['MYSQL_USER'] = os.environ['MYSQL_USER']
-app.config['MYSQL_DATABASE_URL'] = 'mysql://root:fzlcof6vvGsTMMyX1EfD@containers-us-west-44.railway.app:7981/railway'
-# app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
-# app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
-# app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
+mysql_host = os.environ.get('MYSQL_HOST')
+mysql_port = os.environ.get('MYSQL_PORT')
+mysql_user = os.environ.get('MYSQL_USER')
+mysql_password = os.environ.get('MYSQL_PASSWORD')
+mysql_database = os.environ.get('MYSQL_DATABASE')
 
 # Ruta index (landing page)
 @app.route('/', methods=['GET', 'POST'])
@@ -19,7 +18,15 @@ def index():
 # Ruta contactos (organizaciones y sus contactos)
 @app.route('/contactos')
 def contactos():
-    conn = pymysql.connect(unix_socket=app.config['MYSQL_DATABASE_URL'])
+    conn = pymysql.connect(
+        host=mysql_host,
+        port=int(mysql_port),
+        user=mysql_user,
+        password=mysql_password,
+        db=mysql_database,
+        charset='utf8mb4',
+        cursorclass=pymysql.cursors.DictCursor
+    )
     cur = conn.cursor()
     cur.execute("SELECT * FROM organizacion")
     orgs = cur.fetchall()
