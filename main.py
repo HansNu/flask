@@ -14,7 +14,7 @@ app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
 # Ruta index (landing page)
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return app.config['MYSQL_HOST'])
+    return render_template('index.html')
 
 # Ruta contactos (organizaciones y sus contactos)
 @app.route('/contactos')
