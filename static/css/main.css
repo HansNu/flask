@@ -19,7 +19,7 @@
 
 /* Header del Sitio */
 nav{
-    background: white;
+    background-color: #ead8ea;
     height: 80px;
     width: 100%;
     
@@ -34,7 +34,7 @@ nav{
 
 /* Dimensiones y propiedades del Logo */
 .logo{
-    height: 40px;
+    height: 50px;
     transition: all .5s;
 }
 
@@ -57,20 +57,23 @@ nav ul li{
 
 /* Links dentro del menu de navegacion */
 nav ul li a{
-    color: black;
-    font-size: 20px;
+    color: rgb(47, 47, 47);
+    font-size: 18px;
     padding: 7px 13px;
     border-radius: 3px;
     transition: 0.5s;
 }
 
 /* Comportamiento del menu de navegacion cuando el mouse estra sobre algun elemento */
-li a.active, li a:hover{
-    background: #003366;
+li.active, li:hover{
     transition: 0.5s;
-    color:#F5F5F5;
+    border-bottom: 3px solid #003366;
 }
 
+li.active a, li a:hover{
+    color: #003366;
+    font-weight: bold;
+}
 
 /* Menu de hamburguesa */
 .checkbtn{
@@ -94,6 +97,7 @@ li a.active, li a:hover{
 
 /* Cambios cuando la pantalla se hace mediana */
 @media (max-width: 925px){
+    
 
     /* Cambio del tamaño del logo*/
     .enlace{
@@ -113,19 +117,28 @@ li a.active, li a:hover{
 
 
 /* Cambios cuando la pantalla se hace de tamaño chica */
-@media (max-width: 600px){
+@media (max-width: 800px){
     .checkbtn{
         display: block;
         transition: all .5s;
+        position: fixed;
+
     }
+
+    
     /* Cambio de tamaño del logo y del posicionamiento */
     .logo{
+        position: fixed;
+
         height: 40px;
+        margin-left: 15%;
         align-self: center;
         transition: all .5s;
     }
     /* Menu Lateral de navegacion */
     ul{
+        position: fixed;
+
         position: fixed;
         width: 80%;
         height: 100vh;
@@ -172,7 +185,7 @@ li a.active, li a:hover{
 		margin-right: 0;
         transition: all .5s;
 	}
-    /* Propiedades de la informacion sobre las organizaciones */
+    /* Propiedades de la Informacion sobre las organizaciones */
 	.info{
 		width: 90%;
         transition: all .5s;
@@ -308,14 +321,13 @@ Es la X a la derecha del Sitio */
     margin-right: 10%;
     text-align: justify;
     margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 
 .llamadoEmergencia{
     width: 100%;
     height: 50px;
-    
-    display: flex;
 }
 
 
@@ -329,16 +341,7 @@ Es la X a la derecha del Sitio */
    
 }
 
-.derEmergencia{
-    width: 50%;
-    height: 50px;
-  
-    
-}
-
-
 .botonEmergencia{
-    
     font-size: 1.5em;
     background-color: purple;
     color: white;
@@ -349,7 +352,9 @@ Es la X a la derecha del Sitio */
     margin-right: 5%;
     margin-left: 2.5%;
     cursor: pointer;
-
+    position: fixed;
+    bottom: 8%;
+    left: 2%;
 }
 
 
@@ -376,12 +381,27 @@ Es la X a la derecha del Sitio */
 
 .infoInicio{
     font-size: 18px;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
 }
 
 .titulosPagInicio{
     margin-left: 5%;
     color:#003366;
+    margin-bottom: 30px;
+    font-weight: 400;
 }
+
+.titulosPagInfo{
+  margin-top: 20px;
+  text-align: center;
+  color:#003366;
+  margin-bottom: 30px;
+  font-weight: 400;
+  
+
+}
+
 
 #slider {
     margin: 0 auto;
@@ -400,7 +420,6 @@ Es la X a la derecha del Sitio */
     padding: 10px;
     border: 3px solid #ccc;
     background: #fff;
-    position: relative;
     z-index: 1;
  }
  #overflow {
@@ -486,6 +505,7 @@ Es la X a la derecha del Sitio */
  #slide3:checked ~ #bullets label:nth-child(3){
     background: #444;
  }
+
  @media screen and (max-width: 900px) {
     #slide1:checked ~ #controls label:nth-child(2),
     #slide2:checked ~ #controls label:nth-child(3),
@@ -503,3 +523,178 @@ Es la X a la derecha del Sitio */
     }
  }
 
+ .informacionTest{
+    padding: 0 55px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .informacionTest h1{
+    font-size: 40px;
+    color:#003366;
+    font-weight: 400;
+  }
+
+  body{
+    background-color: #EAEAEA;
+  }
+
+  header{
+    margin-bottom: 65px;
+  }
+
+  .banner img{
+    opacity: 0.5;
+    z-index: -1;
+    position: absolute;
+  }
+
+  footer{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #textoFooter{
+    text-align: center;
+    position: absolute;
+    color: #003366;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 60%;
+    font-size: 12px;
+  }
+
+  #seccionInformate{
+    padding-top: 20px;
+    margin-bottom: 60px;
+  }
+
+  .botonInicarTest{
+    margin: 30px 0 0 0;
+  }
+
+  .botonTest, #contenidoTest button, .contactarResultado{
+    background-color:#003366;
+    padding: 20px 60px;
+    color: #fff;
+    font-size: 18px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #contenidoTest{
+    padding: 0 70px;
+    color: #003366;
+  }
+
+  .preguntas{
+    background-color: #D9D9D9;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+  }
+
+  .preguntas h2{
+    margin-bottom: 5px;
+    margin-top: 40px;
+  }
+
+  #contenidoTest input{
+    margin-left: 30px;
+    margin-top: 10px;
+  }
+
+  #contenidoTest label{
+    color:#272626;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+#cuadroResultado{
+    background-color: #D9D9D9;
+    padding: 40px;
+    border-radius: 15px;
+    color:#003366;
+    margin-bottom: 30px;
+}
+
+
+
+.news-item {
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    justify-content: center;
+
+    
+  }
+  
+  .news-item .content {
+    width: 55%;
+    padding: 0 20px;
+  }
+  
+  .news-item .content h2 {
+    margin-top: 0;
+  }
+  
+  .news-item .content p {
+    margin-top: 0;
+    line-height: 1.4;
+  }
+  
+  .news-item .img-wrapper {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .news-item .img-wrapper img {
+    width: 80%;
+  }
+  
+  .left .content {
+    order: 2;
+  }
+  
+  .left .img-wrapper {
+    order: 1;
+  }
+  
+  .right .content {
+    order: 1;
+  }
+  
+  .right .img-wrapper {
+    order: 2;
+  }
+  
+  .img-wrapper{
+      max-width: 400px;
+  }
+  
+  .read-more-btn {
+    display: inline-block;
+    border-radius: 10px;
+
+    background-color: purple;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+  }
+  
