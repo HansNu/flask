@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Version del 10 de marzo del 2023
+	Equipo CHilaquilers
+	Fátima Morales 614571
+	Diego Mejía 569298 
+	Oscar Flores 570390 
+	Hans Nudding 362782
+	-->
+    <meta charset='utf-8'><!-- Permite mostrar todos los caracteres de manera correcta -->
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Nunca Mas</title><!-- Titulo que se va a mostrar en pestaña del navegador -->
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='../static/css/main.css'><!-- Hace referencia al CSS que se va a utilizar para la pagina-->
+	<link rel='stylesheet' type='text/css' media='screen' href="{{url_for('static', filename='css/main.css')}}"><!-- Hace referencia al CSS que se va a utilizar para la pagina-->
+	<script src="{{url_for('static', filename='js/codigo.js')}}"></script><!-- Se hace referencia al JS que se va a utilizar para la pagina -->
+    <script src="../static/js/codigo.js"></script><!-- Se hace referencia al JS que se va a utilizar para la pagina -->
+    <!-- Enlaces para fuentes de iconos -->
+	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@100&display=swap" rel="stylesheet">
+
+<body>
+    <header>
+		<nav>
+			<input type="checkbox" id="check"><!-- Checboc que se activa cuando el tamaño se redice a cierto tamaño -->
+			<label for="check" class="checkbtn"><!-- Menu de hamburgesa -->
+				<i class="fas fa-bars"></i><!-- Icono de Menu de hamburgesa-->
+			</label>
+			<a href="/" class="enlace">
+				<img src="{{url_for('static', filename="images/logoNuncaMas.png")}}" alt="Logo Nunca Mas" class="logo"><!-- Imagen del logo de NUNCA MAS-->
+			</a>
+	        <ul><!-- Menu de navegacion del sitio -->
+		        <li><a href="/">Inicio</a></li><!-- Enlace que nos dirige a la pagina principal del sitio, al ya estar en ese pagina se incluye en la
+			        clase active para que se muestre el formato deseado -->
+				<li><a href="/informate">Infórmate</a></li><!-- Enlace que nos dirice a la pagina "Informate" del sitio-->
+				<li><a class="active" href="/test">Test</a></li><!-- Enlace que nos dirige a la pagina "Test" del sitio-->
+				<li><a href="/contactos">Contactos</a></li><!-- Enlace que nos dirige a la pagina "Contactanos" del sitio-->
+                <li><a href="/organizaciones">Organizaciones</a></li>
+			</ul>
+	   </nav>
+   </header>
+
+   <a href="https://www.accuweather.com/es/mx/monterrey/244681/daily-weather-forecast/244681"><div id="miDiv"><p>&nbsp&nbspX</p></div></a>
+   <script src="js/codigo.js"></script>
+    
+    <div id="contenidoTest">
+        <h1>Test de violencia</h1>
+
+        <div class="preguntas">
+
+            <form class="test" action="/resultados" id="test" method="POST">
+    
+                <div class="tab">
+                    <div class="pregunta1">
+                        <h2>¿Te humilla, insulta o menosprecia?</h2>
+                        <input type="radio" name="p1" value=0 required>
+                        <label for="p1">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p1" value="1" required>
+                        <label for="p1">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p1" value="2" required>
+                        <label for="p1">Sucede constantemente</label><br>
+                    </div>
+                    <div class="pregunta2">
+                        <h2>¿Se burla o hace comentarios despectivos sobre tu apariencia física, inteligencia o habilidades?</h2>
+                        <input type="radio" name="p2" value=0 required>
+                        <label for="p2">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p2" value="1" required>
+                        <label for="p2">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p2" value="2" required>
+                        <label for="p2">Sucede constantemente</label><br>
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <div class="pregunta3">
+                        <h2>¿Te ha agredido físicamente, como golpearte, empujarte o jalarte del cabello?</h2>
+                        <input type="radio" name="p3" value=0 required>
+                        <label for="p3">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p3" value="1" required>
+                        <label for="p3">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p3" value="2" required>
+                        <label for="p3">Sucede constantemente</label><br>
+                    </div>
+                    <div class="pregunta4">
+                        <h2>¿Te ha lastimado con objetos, como tirar cosas hacia ti o golpearte con ellos?</h2>
+                        <input type="radio" name="p4" value=0 required>
+                        <label for="p4">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p4" value="1" required>
+                        <label for="p4">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p4" value="2" required>
+                        <label for="p4">Sucede constantemente</label><br>
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <div class="pregunta5">
+                        <h2>¿Ha destruido o dañado tus pertenencias personales o compartidas intencionalmente?</h2>
+                        <input type="radio" name="p5" value=0 required>
+                        <label for="p5">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p5" value="1" required>
+                        <label for="p5">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p5" value="2" required>
+                        <label for="p5">Sucede constantemente</label><br>
+                    </div>
+                    <div class="pregunta6">
+                        <h2>¿Ha vendido o regalado tus bienes sin tu consentimiento?</h2>
+                        <input type="radio" name="p6" value=0 required>
+                        <label for="p6">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p6" value="1" required>
+                        <label for="p6">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p6" value="2" required>
+                        <label for="p6">Sucede constantemente</label><br>
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <div class="pregunta7">
+                        <h2>¿Te impide tener acceso a tus propios recursos económicos, como cuentas bancarias, salarios o propiedades?</h2>
+                        <input type="radio" name="p7" value=0 required>
+                        <label for="p7">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p7" value="1" required>
+                        <label for="p7">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p7" value="2" required>
+                        <label for="p7">Sucede constantemente</label><br>
+                    </div>
+                    <div class="pregunta8">
+                        <h2>¿Te obliga a entregarle tu salario o dinero, y controla cómo lo gastas?</h2>
+                        <input type="radio" name="p8" value=0 required>
+                        <label for="p8">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p8" value="1" required>
+                        <label for="p8">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p8" value="2" required>
+                        <label for="p8">Sucede constantemente</label><br>
+                    </div>
+                </div>
+    
+                <div class="tab">
+                    <div class="pregunta9">
+                        <h2>¿Te ha forzado a tener relaciones sexuales o a realizar actos sexuales en contra de tu voluntad?</h2>
+                        <input type="radio" name="p9" value=0 required>
+                        <label for="p9">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p9" value="1" required>
+                        <label for="p9">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p9" value="2" required>
+                        <label for="p9">Sucede constantemente</label><br>
+                    </div>
+                    <div class="pregunta10">
+                        <h2>¿Te ha presionado o manipulado para que realices prácticas sexuales que te resultan incómodas o desagradables?</h2>
+                        <input type="radio" name="p10" value=0 required>
+                        <label for="p10">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p10" value="1" required>
+                        <label for="p10">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p10" value="2" required>
+                        <label for="p10">Sucede constantemente</label><br>
+                    </div> 
+                </div>
+
+                <div class="tab">
+                    <div class="pregunta11">
+                        <h2>¿Te ha obligado o presionado para quedar embarazada en contra de tu voluntad?</h2>
+                        <input type="radio" name="p11" value=0 required>
+                        <label for="p11">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p11" value="1" required>
+                        <label for="p11">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p11" value="2" required>
+                        <label for="p11">Sucede constantemente</label><br>
+                    </div>
+                    <div class="pregunta12">
+                        <h2>¿Te ha impedido usar métodos anticonceptivos o interrumpido su uso sin tu consentimiento?</h2>
+                        <input type="radio" name="p12" value=0 required>
+                        <label for="p12">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p12" value="1" required>
+                        <label for="p12">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p12" value="2" required>
+                        <label for="p12">Sucede constantemente</label><br>
+                    </div> 
+                </div>
+
+                <div class="tab">
+                    <div class="pregunta13">
+                        <h2>¿Has sido maltratada, humillada o desatendida durante el embarazo, parto o puerperio por parte de profesionales de la salud?</h2>
+                        <input type="radio" name="p13" value=0 required>
+                        <label for="p13">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p13" value="1" required>
+                        <label for="p13">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p13" value="2" required>
+                        <label for="p13">Sucede constantemente</label><br>
+                    </div>
+                    <div class="pregunta14">
+                        <h2>¿Se te ha negado el derecho a recibir información clara y completa sobre tus opciones de atención durante el embarazo y el parto?</h2>
+                        <input type="radio" name="p14" value=0 required>
+                        <label for="p14">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p14" value="1" required>
+                        <label for="p14">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p14" value="2" required>
+                        <label for="p14">Sucede constantemente</label><br>
+                    </div> 
+                </div>
+
+                <div class="tab">
+                    <div class="pregunta15">
+                        <h2>¿Has recibido amenazas de muerte por parte de tu pareja, expareja o alguien cercano a ti?</h2>
+                        <input type="radio" name="p15" value=0 required>
+                        <label for="p15">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p15" value="1" required>
+                        <label for="p15">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p15" value="2" required>
+                        <label for="p15">Sucede constantemente</label><br>
+                    </div>
+                    <div class="pregunta16">
+                        <h2>¿Te has sentido en peligro de ser asesinada por tu pareja, expareja o alguien cercano a ti?</h2>
+                        <input type="radio" name="p16" value=0 required>
+                        <label for="p16">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p16" value="1" required>
+                        <label for="p16">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p16" value="2" required>
+                        <label for="p16">Sucede constantemente</label><br>
+                    </div> 
+                </div>
+
+                <div class="tab">
+                    <div class="pregunta17">
+                        <h2>¿Has sido víctima de actitudes o comentarios sexistas, misóginos o discriminatorios por parte de tu pareja, expareja o entorno cercano?</h2>
+                        <input type="radio" name="p17" value=0 required>
+                        <label for="p17">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p17" value="1" required>
+                        <label for="p17">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p17" value="2" required>
+                        <label for="p17">Sucede constantemente</label><br>
+                    </div>
+                    <div class="pregunta18">
+                        <h2>¿Se te ha tratado como inferior o incapaz en función de tu género, tanto en el ámbito público como en el privado?</h2>
+                        <input type="radio" name="p18" value=0 required>
+                        <label for="p18">Nunca ha sucedido</label><br>
+                        <input type="radio" name="p18" value="1" required>
+                        <label for="p18">Ha sucedido de 1 a 3 veces</label><br>
+                        <input type="radio" name="p18" value="2" required>
+                        <label for="p18">Sucede constantemente</label><br>
+                    </div> 
+                </div>
+
+                <div class="row centrar">
+                    <div class="col">
+                        <button type="submit" form="test" value="Submit">Enviar</button>
+                    </div>
+                </div>
+            </form>  
+        </div>
+    </div>
+
+     <!-- footer -->
+     <footer>
+        <div class="banner">
+            <img src='{{url_for('static', filename="images/banner.png")}}' alt="banner Nunca Mas" class="imgBanner">
+        </div>
+        <div id="textoFooter">
+            <h4>Términos y condiciones</h4>
+            <p>Al utilizar nuestro sitio web, usted acepta cumplir con nuestros términos y condiciones. No nos hacemos responsables por cualquier daño que pueda resultar del uso del sitio.</p>
+            <br><h4>Aviso de privacidad</h4>
+            <p>Nos comprometemos a proteger su privacidad y a utilizar su información únicamente para fines específicos relacionados con nuestro sitio web. No compartiremos su información con terceros sin su consentimiento.</p>
+        </div>
+    </footer>
+   
+    <!-- boton para llamada de emergencia-->
+    <div class="row">
+        <div class="col ">
+            <button onclick="window.location.href = 'tel:800 10 84 053'" class="botonEmergencia">
+                <p>Llamada de</p>
+                <p><b>emergencia</b></p>
+            </button>
+        </div>
+    </div>   
+
+
+</body>
+</html>

@@ -12,19 +12,16 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Nunca Mas</title><!-- Titulo que se va a mostrar en pestaña del navegador -->
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' type='text/css' media='screen' href='../static/css/main.css'><!-- Hace referencia al CSS que se va a utilizar para la pagina-->
-	<script src='{{url_for('static', filename='js/codigo.js')}}'></script><!-- Se hace referencia al JS que se va a utilizar para la pagina -->
+	<link rel='stylesheet' type='text/css' media='screen' href="../static/css/main.css"><!-- Hace referencia al CSS que se va a utilizar para la pagina-->
+	<script src="{{url_for('static', filename='js/codigo.js')}}"></script><!-- Se hace referencia al JS que se va a utilizar para la pagina -->
     <!-- Enlaces para fuentes de iconos -->
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 
 <body>
     <header>
@@ -40,7 +37,7 @@
 		        <li><a href="/">Inicio</a></li><!-- Enlace que nos dirige a la pagina principal del sitio, al ya estar en ese pagina se incluye en la
 			        clase active para que se muestre el formato deseado -->
 				<li><a href="/informate">Infórmate</a></li><!-- Enlace que nos dirice a la pagina "Informate" del sitio-->
-				<li class="active"><a href="/test">Test</a></li><!-- Enlace que nos dirige a la pagina "Test" del sitio-->
+				<li><a class="active" href="/test">Test</a></li><!-- Enlace que nos dirige a la pagina "Test" del sitio-->
 				<li><a href="/contactos">Contactos</a></li><!-- Enlace que nos dirige a la pagina "Contactanos" del sitio-->
                 <li><a href="/organizaciones">Organizaciones</a></li>
 			</ul>
@@ -49,29 +46,23 @@
 
    <a href="https://www.accuweather.com/es/mx/monterrey/244681/daily-weather-forecast/244681"><div id="miDiv"><p>&nbsp&nbspX</p></div></a>
    <script src="js/codigo.js"></script>
-	<div class="row mx-0 my-4">
-		<div class="col px-0">
-			<h1 class="titulosPagInicio">¿Sufres de violencia de género?</h1>
-		</div>
-	</div>
 
-	<div class="row mx-0">
-		<div class="col px-0 informacion infoInicio">
-			<p>La violencia de género es un problema que afecta a un gran número de personas, sin embargo, muchas veces no se tiene consciecia de estar viviendo dicha situación. El objetivo de esta herramienta es ayudar a desmentir las dudas que personas que sufren de violencia puedan tener sobre sus situaciones. </p>
-			<br><p>En este test responderás preguntas sobre el comportamiento que tú y personas alrededor tuyo tienen. Dependiendo de tus respuestas recibirás una conclusión y se te proporcionarán recursos de ayuda dependiendo de tu situación. Tómate el tiempo para reflexionar cada una de las preguntar presentadas. El test es anónimo, por lo que puedes sentir seguridad y confianza a la hora de responder las preguntas. Al terminar el test no se mantendrá ningún registro de las respuestas o resultado.</p>
-			<br><p>En cualquier momento puedes abandonar el sitio dando doble click al botón con la “X” del lado derecho de la pantalla o hacer una llamada en caso de emergencia con el botón ubicado en la esquina inferior izquierda. Recuerda que no estás sola.</p>
-			<div class="row centrar">
-				<div class="col botonInicarTest">
-					<a href="/responderTest"><button class="botonTest">Comenzar →</button></a>
-				</div>
+    <h1 class="titulosPagInicio">Resultados</h1>
+	<div class="row informacion">
+		<p style="font-size: 18px;">Basado en tus respuestas, se ha detectado un caso de:</p><br>
+		<div class="col centrar" id="cuadroResultado">
+			<p>{{ resultado }}</p>
+		</div>
+		<div class="row centrar ">
+			<div class="col">
+				<button class="contactarResultado" href="#">Contactar</button>
 			</div>
 		</div>
-	</div>
-	
-	 <!-- footer -->
-	 <footer>
+	</div>	
+	<!-- footer -->
+	<footer>
         <div class="banner">
-            <img src='{{url_for('static', filename="images/banner.png")}}' alt="banner Nunca Mas" class="imgBanner">
+            <img src='../static/images/banner.png' alt="banner Nunca Mas" class="imgBanner">
         </div>
         <div id="textoFooter">
             <h4>Términos y condiciones</h4>
@@ -90,5 +81,6 @@
             </button>
         </div>
     </div>   
+
 </body>
 </html>
