@@ -72,6 +72,81 @@ def resultados():
         #### Falta crear consulta para encontrar organizaciones apropiadas
 
         return render_template('resultados.html', resultado=resultado)
+    
+ @app.route('/orgsCambios', methods=['GET', 'POST'])  # Para desplegar página con inputs
+def editarAdmin():
+    idOrg = request.form.get('idOrg')
+    connection = pymysql.connect(**db_config)
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM organizacion WHERE idOrganizacion=%s", (idOrg,))
+        orgs = cursor.fetchall()
+    connection.close()
+
+    return render_template('orgsEditar.html', orgs=orgs)  # Regresa la bd actualizada
+
+
+@app.route('/orgsEditar', methods=['GET', 'POST'])  # Ruta para editar info de organizaciones como admin
+def editarOrgs():
+    connection = pymysql.connect(**db_config)
+    with connection.cursor() as cursor:
+        if request.method == 'POST':
+            idOrg = request.form.get('idOrg')
+            nomOrg = request.form['nombreOrg']
+            tipoOrg = request.form['tipoOrg']
+            descOrg = request.form['descOrg']
+            telOrg = request.form['telOrg']
+            correoOrg = request.form['correoOrg']
+            sitioOrg = request.form['sitioOrg']
+            cursor.execute("UPDATE organizacion SET nombre=%s, tipo=%s, descripcion=%s, telefono=%s, correo=%s, sitio=%s WHERE idOrganizacion=%s", (nomOrg, tipoOrg, descOrg, telOrg, correoOrg, sitioOrg, idOrg,))
+            connection.commit()
+
+            cursor.execute("SELECT * FROM organizacion")
+            orgs = cursor.fetchall()
+    connection.close()
+
+    return render_template('organizacionesAdmin.html', orgs=orgs)  # Regresa la bd actualizada
+
+
+@app.route('/orgsBorrar', methods=['GET', 'POST'])  # Manda del botón borrar de orgsEditar
+def borrarOrgs():
+    idOrg = request.form.get('idOrg')  # Manda el valor de su id
+    connection = pymysql.connect(**db_config)
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM organizacion WHERE idOrganizacion=%s", (idOrg,))
+        connection.commit()
+
+        cursor.execute("SELECT * FROM organizacion")
+        orgs = cursor.fetchall()
+    connection.close()
+
+    return render_template('organizacionesAdmin.html', orgs=orgs)  # Regresa al inicio con la bd actualizada
+
+
+@app.route('/agregarOrg', methods=['GET', 'POST'])  # Manda del botón borrar de orgsEditar
+def desplegarCampos():
+    return render_template('agregarOrgs.html')  # Regresa al inicio con la bd actualizada
+
+
+@app.route('/agregarOrgs', methods=['GET', 'POST'])
+def nuevaOrg():
+    connection = pymysql.connect(**db_config)
+    with connection.cursor() as cursor:
+        if request.method == 'POST':
+            idOrg = request.form.get('idOrg')
+            nomOrg = request.form['nombreOrg']
+            tipoOrg = request.form['tipoOrg']
+            descOrg = request.form['descOrg']
+            telOrg = request.form['telOrg']
+            correoOrg = request.form['correoOrg']
+            sitioOrg = request.form['sitioOrg']
+            cursor.execute("INSERT INTO organizacion (nombre, tipo, descripcion, telefono, correo, sitio) VALUES (%s, %s, %s, %s, %s, %s)", (nomOrg, tipoOrg, descOrg, telOrg, correoOrg, sitioOrg,))
+            connection.commit()
+
+            cursor.execute("SELECT * FROM organizacion")
+            orgs = cursor.fetchall()
+    connection.close()
+
+    return render_template('organizacionesAdmin.html', orgs=orgs)  # Regresa la bd actualizada
 
 if __name__ == '__main__':
     app.run(debug=True)
