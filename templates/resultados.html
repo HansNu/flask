@@ -39,7 +39,7 @@
 			        clase active para que se muestre el formato deseado -->
 				<li><a href="/informate">Infórmate</a></li><!-- Enlace que nos dirice a la pagina "Informate" del sitio-->
 				<li><a class="active" href="/test">Test</a></li><!-- Enlace que nos dirige a la pagina "Test" del sitio-->
-				<li><a href="/contactos">Contactos</a></li><!-- Enlace que nos dirige a la pagina "Contactanos" del sitio-->
+                <!--<li><a href="/contactos">Contactos</a></li><!-- Enlace que nos dirige a la pagina "Contactanos" del sitio-->
                 <li><a href="/organizaciones">Organizaciones</a></li>
 			</ul>
 	   </nav>
@@ -87,8 +87,10 @@
             
 
             <!-- Desplegar organizaciones relevantes -->
-            <br><br><p class="centrar" style="font-size: 16px; color:#003366; font-weight: 300;">Te recomendamos contactar a las siguientes organizaciones para recibir apoyo</p> <br>
-             
+            {% if orgs %}
+                <br><br><p class="centrar" style="font-size: 16px; color:#003366; font-weight: 300;">Te recomendamos contactar a las siguientes organizaciones para recibir apoyo</p> <br>
+            {% endif %}
+
             {% for org in orgs %}
                 <!-- Es necesario usar dos índices para acceder a los valores-->
                 
@@ -125,12 +127,6 @@
 
 
 
-
-			<div class="row" style="margin-bottom: 30px;">
-				<div class="col centrar">
-					<button class="contactarResultado" href="#">Contactar</button>
-				</div>
-			</div>
 			<p class="centrar" style="font-size: 16px; color:#003366; font-weight: 300;">Esta página cuenta con recursos disponibles si necesitas apoyo para salir de una situación de violencia. Éste es el primer paso para una vida libre de violencia. Recuerda que no está sol@.</p>
 		</div>
 	</div>	
