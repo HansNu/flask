@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Resultado</title>
+	<style>
+		.resultado {
+			padding: 10px;
+			margin-top: 20px;
+			font-weight: bold;
+			text-align: center;
+		}
+		
+		.verde {
+			background-color: green;
+		}
+		
+		.amarillo {
+			background-color: yellow;
+		}
+		
+		.rojo {
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<h1>Resultado</h1>
+	
+	<div class="resultado"></div>
+	
+	<script>
+	  const resultadoDiv = document.querySelector('.resultado');
+	  
+	  const resultadoString = localStorage.getItem('resultado');
+	  const resultado = JSON.parse(resultadoString);
+	  
+	  let colorClass = '';
+	  switch (resultado.color) {
+	    case 'verde':
+	      colorClass = 'verde';
+	      break;
+	    case 'amarillo':
+	      colorClass = 'amarillo';
+	      break;
+	    case 'rojo':
+	      colorClass = 'rojo';
+	      break;
+	    default:
+	      colorClass = '';
+	      break;
+	  }
+	  
+	  resultadoDiv.textContent = `Respuesta 1: ${resultado.respuesta1}, Respuesta 2: ${resultado.respuesta2}, Respuesta 3: ${resultado.respuesta3}`;
+	  resultadoDiv.classList.add(colorClass);
+	  
+	  localStorage.removeItem('resultado');
+	</script>
+</body>
+</html>

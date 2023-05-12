@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conjunto de preguntas de sí o no</title>
+	<style>
+		.resultado {
+			padding: 10px;
+			margin-top: 20px;
+			font-weight: bold;
+			text-align: center;
+		}
+		
+		.verde {
+			background-color: green;
+		}
+		
+		.amarillo {
+			background-color: yellow;
+		}
+		
+		.rojo {
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<h1>Conjunto de preguntas de sí o no</h1>
+	
+	<form>
+		<h2>Primera pregunta</h2>
+		<label>
+			<input type="radio" name="pregunta1" value="si"> Sí
+		</label>
+		<label>
+			<input type="radio" name="pregunta1" value="no"> No
+		</label>
+		
+		<h2>Segunda pregunta</h2>
+		<label>
+			<input type="radio" name="pregunta2" value="si"> Sí
+		</label>
+		<label>
+			<input type="radio" name="pregunta2" value="no"> No
+		</label>
+		
+		<h2>Tercera pregunta</h2>
+		<label>
+			<input type="radio" name="pregunta3" value="si"> Sí
+		</label>
+		<label>
+			<input type="radio" name="pregunta3" value="no"> No
+		</label>
+		
+		<input type="submit" value="Enviar">
+	</form>
+	
+	<script>
+	  const form = document.querySelector('form');
+	  form.addEventListener('submit', (event) => {
+	    event.preventDefault(); // Previene el envío por defecto del formulario
+	    
+	    const respuesta1 = form.elements.pregunta1.value;
+	    const respuesta2 = form.elements.pregunta2.value;
+	    const respuesta3 = form.elements.pregunta3.value;
+	    
+	    let color = '';
+	    if (respuesta1 === 'si' && respuesta2 === 'si' && respuesta3 === 'si') {
+	    	color = 'rojo';
+	    } else if (respuesta1 === 'si' && respuesta2 === 'si' || respuesta1 === 'si' && respuesta3 === 'si' || respuesta2 === 'si' && respuesta3 === 'si') {
+	    	color = 'amarillo';
+	    } else {
+	    	color = 'verde';
+	    }
+	    
+	    const resultados = document.createElement('div');
+	    resultados.classList.add('resultado', color);
+	    resultados.textContent = `Respuestas: ${respuesta1}, ${respuesta2}, ${respuesta3}`;
+	    form.parentNode.replaceChild(resultados, form);
+	  });
+	</script>
+</body>
+</html>
