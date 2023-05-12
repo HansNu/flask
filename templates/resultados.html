@@ -78,7 +78,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row centrar" style="margin: 20px 0;">
+			<div class="row centrar" style="margin: 40px 0;">
 				<div class="col-2 derecha" style="font-size: 16px; color:#003366; font-weight: 300;">No se ha presentado</div>
 				<div class="col-6" id="barraColor"></div>
 				<div class="col-2" style="font-size: 16px; color:#003366; font-weight: 300;">Muy presente</div>
@@ -87,44 +87,38 @@
             
 
             <!-- Desplegar organizaciones relevantes -->
-            <p>Te recomendamos contactar a las siguientes organizaciones para recibir apoyo</p> 
+            <br><br><p class="centrar" style="font-size: 16px; color:#003366; font-weight: 300;">Te recomendamos contactar a las siguientes organizaciones para recibir apoyo</p> <br>
              
             {% for org in orgs %}
                 <!-- Es necesario usar dos índices para acceder a los valores-->
                 
-                <div class="tarjeta">
-                <!-- El DIV image solamente tiene la imagen de la organizacion con su ruta y su texto alternativo en caso de que no se pueda desplegar la imagen-->
-                <div class="image">
-                    <img src="{{ url_for('static', filename="images/"~org[0][8]) }}" alt="Logo {{ org[0][1] }}">
-                </div> 
-                <!-- El DIV info es en donde se va a almacenar toda la informacion sobre la organizacion-->
-                <div class="info">
-                    <!-- Dentro del h2 se mostrara el nombre de la organizacion -->
-                    <h2>{{ org[0][1] }}</h2>
-                    <h4>{{ org[0][2] }}</h4>
-                    <h4>{{ org[0][9] }}</h4>
-                    <!-- Dentro del p se mostrara una breve descripcion sobre la organizacion -->
-                    <p>{{ org[0][3] }}
-                    </p>
-                    <div class="row info_contacto">
-                        <div class="col icono"><i class="fa-solid fa-phone"></i></div><!-- Icono de Telefono -->
-                        <div class="col">&nbsp;<a  href="tel:+52{{org[5]}}">{{ org[0][5] }}</a></div><!-- Numero telefonico de la organizacion -->
-                    </div>
-                        <br>
-                    <!-- Dentro de este div se encuentra la informacion del correo electronico de la organizacion-->
-                    <div class="row info_contacto">
-                        <div class="col icono"><i class="fa-regular fa-envelope"></i></div><!-- Icono de un correo -->
-                        <div class="col">&nbsp;{{org[0][6]}}</div><!-- Correo electronico de la organizacion -->
-                    </div>	
-                        <br>
-                    <!-- Dentro de este div se encunetra la informacion sobre el sitio web de la organizacion -->
-                    <div class="row info_contacto">
-                        <div class="col icono"><i class="fa-solid fa-globe"></i></div>
-                        <!-- Liga que manda al link de la organizacion pero solo se muestra una forma corte del link para que sea mas atractivo visualmente-->
-                        <div class="col"><a href="https://www.{{org[0][7]}}">&nbsp;{{org[0][7]}}</a></div>
-                    </div>
-                </div>
-            </div>
+                <div class="tarjeta row centrar">
+					<!-- El DIV image solamente tiene la imagen de la organizacion con su ruta y su texto alternativo en caso de que no se pueda desplegar la imagen-->
+					<div class="image centrar col">
+						<img src="{{ url_for('static', filename="images/"~org[0][8]) }}" alt="Logo {{ org[0][1] }}">
+					</div> 
+					<!-- El DIV info es en donde se va a almacenar toda la informacion sobre la organizacion-->
+					<div class="info col">
+						<!-- Dentro del h2 se mostrara el nombre de la organizacion -->
+						<h2 style="font-weight: 600; font-size: 25px;">{{ org[0][1] }}</h2>
+						<h4 style="font-size: 20px;">{{ org[0][2] }}</h4>
+						<h4 style="font-size: 20px;">{{ org[0][9] }}</h4>
+						<!-- Dentro del p se mostrara una breve descripcion sobre la organizacion -->
+						<p style="font-weight: 300;">{{ org[0][3] }}</p>
+						<div class="row info_contacto" style="margin-top: 10px;">
+							<div class="col"><a  href="tel:+52{{org[5]}}" style="text-decoration: none; font-weight: 300;"><i class="fa-solid fa-phone" style="color: #003366;"></i>&nbsp;&nbsp;&nbsp;{{ org[0][5] }}</a></div><!-- Numero telefonico de la organizacion -->
+						</div>
+						<!-- Dentro de este div se encuentra la informacion del correo electronico de la organizacion-->
+						<div class="row info_contacto" style="margin-top: 10px; font-weight: 300;">
+							<div class="col"><i class="fa-regular fa-envelope"  style="color: #003366;"></i>&nbsp;&nbsp;&nbsp;{{org[0][6]}}</div><!-- Correo electronico de la organizacion -->
+						</div>	
+						<!-- Dentro de este div se encunetra la informacion sobre el sitio web de la organizacion -->
+						<div class="row info_contacto" style="margin-top: 10px; font-weight: 300;">
+							<!-- Liga que manda al link de la organizacion pero solo se muestra una forma corte del link para que sea mas atractivo visualmente-->
+							<div class="col"><a href="https://www.{{org[0][7]}}" style="text-decoration: none;"><i class="fa-solid fa-globe" style="color: #003366;"></i>&nbsp;&nbsp;&nbsp;{{org[0][7]}}</a></div>
+						</div>
+					</div>
+            	</div>
             {% endfor %}
 
 
@@ -137,7 +131,7 @@
 					<button class="contactarResultado" href="#">Contactar</button>
 				</div>
 			</div>
-			<p class="centrar" style="font-size: 16px; color:#003366; font-weight: 300;">Esta página cuenta con recursos disponibles si necesitas apoyo para salir de una situación de violencia. Éste es el primer paso para una vida libre de violencia.</p>
+			<p class="centrar" style="font-size: 16px; color:#003366; font-weight: 300;">Esta página cuenta con recursos disponibles si necesitas apoyo para salir de una situación de violencia. Éste es el primer paso para una vida libre de violencia. Recuerda que no está sol@.</p>
 		</div>
 	</div>	
 	</div>
