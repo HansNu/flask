@@ -38,6 +38,21 @@ def organizaciones():
 
     return render_template('organizaciones.html', orgs=orgs)
 
+# Ruta informate
+@app.route('/informate')
+def informate():
+    return render_template('informate.html')
+
+# Ruta test
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
+# Ruta para responder el test
+@app.route('/responderTest')
+def responder():
+    return render_template('responderTest.html')
+
 @app.route('/resultados', methods=['POST', 'GET'])
 def resultados():
     if request.method=='GET':
