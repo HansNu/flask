@@ -12,7 +12,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Nunca Mas</title><!-- Titulo que se va a mostrar en pestaña del navegador -->
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' type='text/css' media='screen' href="{{url_for('static', filename='css/main.css')}}"><!-- Hace referencia al CSS que se va a utilizar para la pagina-->
+	<link rel='stylesheet' type='text/css' media='screen' href="../static/css/main.css"><!-- Hace referencia al CSS que se va a utilizar para la pagina-->
 	<script src="{{url_for('static', filename='js/codigo.js')}}"></script><!-- Se hace referencia al JS que se va a utilizar para la pagina -->
     <!-- Enlaces para fuentes de iconos -->
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
@@ -37,17 +37,19 @@
         <ul><!-- Menu de navegacion del sitio -->
             <li><a href="/">Inicio</a></li><!-- Enlace que nos dirige a la pagina principal del sitio, al ya estar en ese pagina se incluye en la
                 clase active para que se muestre el formato deseado -->
-            <li><a class="active" href="/informate">Infórmate</a></li><!-- Enlace que nos dirice a la pagina "Informate" del sitio-->
+                <li class="active" ><a href="/informate">Infórmate</a></li><!-- Enlace que nos dirice a la pagina "Informate" del sitio-->
             <li><a href="/test">Test</a></li><!-- Enlace que nos dirige a la pagina "Test" del sitio-->
             <li><a href="/contactos">Contactos</a></li><!-- Enlace que nos dirige a la pagina "Contactanos" del sitio-->
             <li><a href="/organizaciones">Organizaciones</a></li>
         </ul>
 
 
-    </nav>
+      </nav>
     <div id="miDiv"><p>&nbsp&nbspX</p></div>
+  
+    <div class="content-wrapper" style="margin-top: 50px;">
 
-    <h1 class="titulosPagInfo">Infórmate</h1>
+    <h1 class="titulosPagInfo" style="text-align: start; padding: 0 55px;">Infórmate</h1>
 
 
     <div class="news-item left">
@@ -78,10 +80,27 @@
     
   
 </header>
-
 <a href="https://www.accuweather.com/es/mx/monterrey/244681/daily-weather-forecast/244681"><div id="miDiv"><p>&nbsp&nbspX</p></div></a>
 <script src="js/codigo.js"></script>
+</div>
+  <!-- footer -->
+	<div class="row mx-0 centrar" id="footer">
+    <div class="col-12" id="textoFooter">
+        <h4>Términos y condiciones</h4>
+        <p>Al utilizar nuestro sitio web, usted acepta cumplir con nuestros términos y condiciones. No nos hacemos responsables por cualquier daño que pueda resultar del uso del sitio.</p>
+        <br><h4>Aviso de privacidad</h4>
+        <p>Nos comprometemos a proteger su privacidad y a utilizar su información únicamente para fines específicos relacionados con nuestro sitio web. No compartiremos su información con terceros sin su consentimiento.</p>
+    </div>
+  </div>
 
-    
+  <!-- boton para llamada de emergencia-->
+  <div class="row">
+    <div class="col">
+        <button onclick="window.location.href = 'tel:800 10 84 053'" class="botonEmergencia">
+            <p>Llamada de</p>
+            <p><b>emergencia</b></p>
+        </button>
+    </div>
+  </div>   
 </body>
 </html>

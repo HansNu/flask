@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!--Version del 10 de marzo del 2023
+    <!--Version del 10 de marzo del 2023
 	Equipo CHilaquilers
 	Fátima Morales 614571
 	Diego Mejía 569298 
@@ -12,8 +12,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Nunca Mas</title><!-- Titulo que se va a mostrar en pestaña del navegador -->
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}"> 
-	<link rel="stylesheet" href="{{url_for('static', filename='css/contactos.css')}}"> 
+	<link rel='stylesheet' type='text/css' media='screen' href="../static/css/main.css"><!-- Hace referencia al CSS que se va a utilizar para la pagina-->
 	<script src="{{url_for('static', filename='js/codigo.js')}}"></script><!-- Se hace referencia al JS que se va a utilizar para la pagina -->
     <!-- Enlaces para fuentes de iconos -->
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
@@ -24,64 +23,64 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@100&display=swap" rel="stylesheet">
 
-
 <body>
     <header>
-	    <nav>
-		    <input type="checkbox" id="check"><!-- Checboc que se activa cuando el tamaño se redice a cierto tamaño -->
+		<nav>
+			<input type="checkbox" id="check"><!-- Checboc que se activa cuando el tamaño se redice a cierto tamaño -->
 			<label for="check" class="checkbtn"><!-- Menu de hamburgesa -->
 				<i class="fas fa-bars"></i><!-- Icono de Menu de hamburgesa-->
 			</label>
 			<a href="/" class="enlace">
 				<img src="{{url_for('static', filename="images/logoNuncaMas.png")}}" alt="Logo Nunca Mas" class="logo"><!-- Imagen del logo de NUNCA MAS-->
 			</a>
-			<ul><!-- Menu de navegacion del sitio -->
-				<li><a href="/">Inicio</a></li><!-- Enlace que nos dirige a la pagina principal del sitio, al ya estar en ese pagina se incluye en la
-					clase active para que se muestre el formato deseado -->
+	        <ul><!-- Menu de navegacion del sitio -->
+		        <li><a href="/">Inicio</a></li><!-- Enlace que nos dirige a la pagina principal del sitio, al ya estar en ese pagina se incluye en la
+			        clase active para que se muestre el formato deseado -->
 				<li><a href="/informate">Infórmate</a></li><!-- Enlace que nos dirice a la pagina "Informate" del sitio-->
-				<li><a href="/test">Test</a></li><!-- Enlace que nos dirige a la pagina "Test" del sitio-->
-				<li><a class="active" href="/contactos">Contactos</a></li><!-- Enlace que nos dirige a la pagina "Contactanos" del sitio-->
+				<li><a class="active" href="/test">Test</a></li><!-- Enlace que nos dirige a la pagina "Test" del sitio-->
+				<li><a href="/contactos">Contactos</a></li><!-- Enlace que nos dirige a la pagina "Contactanos" del sitio-->
                 <li><a href="/organizaciones">Organizaciones</a></li>
 			</ul>
-        </nav>
- 
-	</header>
+	   </nav>
+   </header>
 
-    <a href="https://www.accuweather.com/es/mx/monterrey/244681/daily-weather-forecast/244681"><div id="miDiv"><p>&nbsp&nbspX</p></div></a>
-    <script src="js/codigo.js"></script>
-    <div class="content-wrapper">
-    <div class="container">
-        <h1>Contactos</h1>
-        {% for contactos in contactos %}
-        <div class="tarjeta">
-            <!-- El DIV info es en donde se va a almacenar toda la informacion sobre la organizacion-->
-            <div class="info">
-                <!-- Dentro del h2 se mostrara el nombre de la organizacion -->
-                <h2>{{ contactos[1] }} {{ contactos[2] }}</h2>
-                <h4>{{ contactos[6] }}</h4>
-                <h4>{{ contactos[5] }}</h4>
-                <div class="row info_contacto">
-                    <div class="col icono"><i class="fa-solid fa-phone"></i></div><!-- Icono de Telefono -->
-                    <div class="col">&nbsp;<a  href="tel:+52{{contactos[3]}}">{{ contactos[3] }}</a></div><!-- Numero telefonico de la organizacion -->
-                </div>
-                    <br>
-                <!-- Dentro de este div se encuentra la informacion del correo electronico de la organizacion-->
-                <div class="row info_contacto">
-                    <div class="col icono"><i class="fa-regular fa-envelope"></i></div><!-- Icono de un correo -->
-                    <div class="col">&nbsp;{{contactos[4]}}</div><!-- Correo electronico de la organizacion -->
-                </div>	
-            </div>
-        {% endfor %}
+   <a href="https://www.accuweather.com/es/mx/monterrey/244681/daily-weather-forecast/244681"><div id="miDiv"><p>&nbsp&nbspX</p></div></a>
+   <script src="js/codigo.js"></script>
+
+    <h1 class="titulosPagInicio">Resultados</h1>
+	<div class="row informacion">
+		<p style="font-size: 18px;">Basado en tus respuestas, se clasifican los siguientes resultados:</p><br>
+		<div class="col centrar" id="cuadroResultado">
+			<p>{{ resultado }}</p>
+		</div>
+		<div class="row centrar ">
+			<div class="col">
+				<button class="contactarResultado" href="#">Contactar</button>
+			</div>
+		</div>
+	</div>	
+	<!-- footer -->
+	<footer>
+        <div class="banner">
+            <img src='../static/images/banner.png' alt="banner Nunca Mas" class="imgBanner">
         </div>
-    </div>
-        <!-- footer -->
-	<div class="row mx-0 centrar" id="footer">
-        <div class="col-12" id="textoFooter">
+        <div id="textoFooter">
             <h4>Términos y condiciones</h4>
             <p>Al utilizar nuestro sitio web, usted acepta cumplir con nuestros términos y condiciones. No nos hacemos responsables por cualquier daño que pueda resultar del uso del sitio.</p>
             <br><h4>Aviso de privacidad</h4>
             <p>Nos comprometemos a proteger su privacidad y a utilizar su información únicamente para fines específicos relacionados con nuestro sitio web. No compartiremos su información con terceros sin su consentimiento.</p>
         </div>
-    </div>
+    </footer>
+   
+    <!-- boton para llamada de emergencia-->
+    <div class="row">
+        <div class="col ">
+            <button onclick="window.location.href = 'tel:800 10 84 053'" class="botonEmergencia">
+                <p>Llamada de</p>
+                <p><b>emergencia</b></p>
+            </button>
+        </div>
+    </div>   
+
 </body>
 </html>

@@ -18,10 +18,11 @@
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 <body>
     <header>
@@ -31,7 +32,7 @@
 				<i class="fas fa-bars"></i><!-- Icono de Menu de hamburgesa-->
 			</label>
 			<a href="/" class="enlace">
-				<img src="{{url_for('static', filename="images/logoNuncaMas.png")}}" alt="Logo Nunca Mas" class="logo"><!-- Imagen del logo de NUNCA MAS-->
+				<img src="../static/images/logoNuncaMas.png" alt="Logo Nunca Mas" class="logo"><!-- Imagen del logo de NUNCA MAS-->
 			</a>
 	        <ul><!-- Menu de navegacion del sitio -->
 		        <li><a href="/">Inicio</a></li><!-- Enlace que nos dirige a la pagina principal del sitio, al ya estar en ese pagina se incluye en la
@@ -46,35 +47,113 @@
 
    <a href="https://www.accuweather.com/es/mx/monterrey/244681/daily-weather-forecast/244681"><div id="miDiv"><p>&nbsp&nbspX</p></div></a>
    <script src="js/codigo.js"></script>
-
+   <div class="content-wrapper">
     <h1 class="titulosPagInicio">Resultados</h1>
-	<div class="row informacion">
-		<p style="font-size: 18px;">Basado en tus respuestas, se ha detectado un caso de:</p><br>
-		<div class="col centrar" id="cuadroResultado">
-			<p>{{ resultado }}</p>
-		</div>
-		<div class="row centrar ">
-			<div class="col">
-				<button class="contactarResultado" href="#">Contactar</button>
+	<div class="row">
+		<div class="col contResultados">
+			<p class="centrar" style="font-size: 18px; color:#003366; font-weight: 300;">Basado en el conjunto de respuestas ingresadas, notamos los siguientes resultados: </p><br>
+			<div class="row" style="display: flex;">
+				<div class="col-4">
+					<div class="row derecha">
+						<div class="col-8 centrar centrar rectangle {% if resultado[0] == 0 %}yellow{% elif resultado[0] == 1 %}orange{% else %}red{% endif %}">Violencia<br>psicológica</div>
+					</div>
+					<div class="row derecha">
+						<div class="col-8 centrar centrar rectangle {% if resultado[1] == 0 %}yellow{% elif resultado[1] == 1 %}orange{% else %}red{% endif %}">Violencia<br>física</div>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="row centrar">
+						<div class="col-8 centrar centrar rectangle {% if resultado[2] == 0 %}yellow{% elif resultado[2] == 1 %}orange{% else %}red{% endif %}">Violencia<br>sexual</div>
+					</div>
+					<div class="row centrar">
+						<div class="col-8 centrar centrar rectangle {% if resultado[3] == 0 %}yellow{% elif resultado[3] == 1 %}orange{% else %}red{% endif %}">Violencia<br>financiera</div>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="row" style="justify-content: left;">
+						<div class="col-8 centrar centrar rectangle {% if resultado[4] == 0 %}yellow{% elif resultado[4] == 1 %}orange{% else %}red{% endif %}">Violencia<br>emocional</div>
+					</div>
+					<div class="row" style="justify-content: left;">
+						<div class="col-8 centrar centrar rectangle {% if resultado[5] == 0 %}yellow{% elif resultado[5] == 1 %}orange{% else %}red{% endif %}">Violencia<br>basada en el honor</div>
+					</div>
+				</div>
 			</div>
+			<div class="row centrar" style="margin: 20px 0;">
+				<div class="col-2 derecha" style="font-size: 16px; color:#003366; font-weight: 300;">No se ha presentado</div>
+				<div class="col-6" id="barraColor"></div>
+				<div class="col-2" style="font-size: 16px; color:#003366; font-weight: 300;">Muy presente</div>
+			</div>
+
+            
+
+            <!-- Desplegar organizaciones relevantes -->
+            <p>Te recomendamos contactar a las siguientes organizaciones para recibir apoyo</p> 
+             
+            {% for org in orgs %}
+                <!-- Es necesario usar dos índices para acceder a los valores-->
+                
+                <div class="tarjeta">
+                <!-- El DIV image solamente tiene la imagen de la organizacion con su ruta y su texto alternativo en caso de que no se pueda desplegar la imagen-->
+                <div class="image">
+                    <img src="{{ url_for('static', filename="images/"~org[0][8]) }}" alt="Logo {{ org[0][1] }}">
+                </div> 
+                <!-- El DIV info es en donde se va a almacenar toda la informacion sobre la organizacion-->
+                <div class="info">
+                    <!-- Dentro del h2 se mostrara el nombre de la organizacion -->
+                    <h2>{{ org[0][1] }}</h2>
+                    <h4>{{ org[0][2] }}</h4>
+                    <h4>{{ org[0][9] }}</h4>
+                    <!-- Dentro del p se mostrara una breve descripcion sobre la organizacion -->
+                    <p>{{ org[0][3] }}
+                    </p>
+                    <div class="row info_contacto">
+                        <div class="col icono"><i class="fa-solid fa-phone"></i></div><!-- Icono de Telefono -->
+                        <div class="col">&nbsp;<a  href="tel:+52{{org[5]}}">{{ org[0][5] }}</a></div><!-- Numero telefonico de la organizacion -->
+                    </div>
+                        <br>
+                    <!-- Dentro de este div se encuentra la informacion del correo electronico de la organizacion-->
+                    <div class="row info_contacto">
+                        <div class="col icono"><i class="fa-regular fa-envelope"></i></div><!-- Icono de un correo -->
+                        <div class="col">&nbsp;{{org[0][6]}}</div><!-- Correo electronico de la organizacion -->
+                    </div>	
+                        <br>
+                    <!-- Dentro de este div se encunetra la informacion sobre el sitio web de la organizacion -->
+                    <div class="row info_contacto">
+                        <div class="col icono"><i class="fa-solid fa-globe"></i></div>
+                        <!-- Liga que manda al link de la organizacion pero solo se muestra una forma corte del link para que sea mas atractivo visualmente-->
+                        <div class="col"><a href="https://www.{{org[0][7]}}">&nbsp;{{org[0][7]}}</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+
+
+
+			<div class="row" style="margin-bottom: 30px;">
+				<div class="col centrar">
+					<button class="contactarResultado" href="#">Contactar</button>
+				</div>
+			</div>
+			<p class="centrar" style="font-size: 16px; color:#003366; font-weight: 300;">Esta página cuenta con recursos disponibles si necesitas apoyo para salir de una situación de violencia. Éste es el primer paso para una vida libre de violencia.</p>
 		</div>
 	</div>	
+	</div>
 	<!-- footer -->
-	<footer>
-        <div class="banner">
-            <img src='../static/images/banner.png' alt="banner Nunca Mas" class="imgBanner">
-        </div>
-        <div id="textoFooter">
+	<div class="row mx-0 centrar" id="footer">
+        <div class="col-12" id="textoFooter">
             <h4>Términos y condiciones</h4>
             <p>Al utilizar nuestro sitio web, usted acepta cumplir con nuestros términos y condiciones. No nos hacemos responsables por cualquier daño que pueda resultar del uso del sitio.</p>
             <br><h4>Aviso de privacidad</h4>
             <p>Nos comprometemos a proteger su privacidad y a utilizar su información únicamente para fines específicos relacionados con nuestro sitio web. No compartiremos su información con terceros sin su consentimiento.</p>
         </div>
-    </footer>
+    </div>
    
     <!-- boton para llamada de emergencia-->
     <div class="row">
-        <div class="col ">
+        <div class="col">
             <button onclick="window.location.href = 'tel:800 10 84 053'" class="botonEmergencia">
                 <p>Llamada de</p>
                 <p><b>emergencia</b></p>

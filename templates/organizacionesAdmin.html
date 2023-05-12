@@ -44,10 +44,10 @@
         </nav>
  
 	</header>
-
-    <div id="miDiv"><p>&nbsp&nbspX</p></div>
+    
     <script src="js/codigo.js"></script>
         <!-- El DIV container es el que va a tener toda la infromacion sobre las organizaciones dentro -->
+    <div class="content-wrapper">   
         <div class="centrar">
         <div class="cuerpo">
             <div class="row">
@@ -73,7 +73,10 @@
                         </div>
                         <div class="col-4 d-flex align-items-end derecha">
                             <div class="botonAdmin d-flex align-items-center">
-                                <a href="orgsEditar.html" value="{{ org[0] }"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Editar</a>
+                            <form method="POST" action="/orgsCambios/{{org[0]}}">
+                                <input type="hidden"/>
+                                <a href="/orgsCambios/{{org[0]}}" onclick="submitForm();"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Editar</a>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -110,17 +113,15 @@
             </form>
         </div>
         </div>
-        <!-- footer -->
-        <footer>
-            <div class="banner">
-                <img src='../static/images/banner.png' alt="banner Nunca Mas" class="imgBanner">
-            </div>
-            <div id="textoFooter">
-                <h4>Términos y condiciones</h4>
-                <p>Al utilizar nuestro sitio web, usted acepta cumplir con nuestros términos y condiciones. No nos hacemos responsables por cualquier daño que pueda resultar del uso del sitio.</p>
-                <br><h4>Aviso de privacidad</h4>
-                <p>Nos comprometemos a proteger su privacidad y a utilizar su información únicamente para fines específicos relacionados con nuestro sitio web. No compartiremos su información con terceros sin su consentimiento.</p>
-            </div>
-        </footer>
+    </div>
+    <!-- footer -->
+	<div class="row mx-0 centrar" id="footer">
+        <div class="col-12" id="textoFooter">
+            <h4>Términos y condiciones</h4>
+            <p>Al utilizar nuestro sitio web, usted acepta cumplir con nuestros términos y condiciones. No nos hacemos responsables por cualquier daño que pueda resultar del uso del sitio.</p>
+            <br><h4>Aviso de privacidad</h4>
+            <p>Nos comprometemos a proteger su privacidad y a utilizar su información únicamente para fines específicos relacionados con nuestro sitio web. No compartiremos su información con terceros sin su consentimiento.</p>
+        </div>
+    </div>
 </body>
 </html>

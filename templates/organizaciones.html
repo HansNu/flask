@@ -12,7 +12,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Nunca Mas</title><!-- Titulo que se va a mostrar en pestaña del navegador -->
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}"> 
+	<link rel="stylesheet" href="../static/css/main.css"> 
 	<script src="{{url_for('static', filename='js/codigo.js')}}"></script><!-- Se hace referencia al JS que se va a utilizar para la pagina -->
     <!-- Enlaces para fuentes de iconos -->
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
@@ -49,6 +49,7 @@
     <a href="https://www.accuweather.com/es/mx/monterrey/244681/daily-weather-forecast/244681"><div id="miDiv"><p>&nbsp&nbspX</p></div></a>
     <script src="js/codigo.js"></script>
         <!-- El DIV container es el que va a tener toda la infromacion sobre las organizaciones dentro -->
+        <div class="content-wrapper">
         <div class="container">
             <h1>Organizaciones</h1>
 
@@ -66,6 +67,7 @@
                     <!-- Dentro del h2 se mostrara el nombre de la organizacion -->
                     <h2>{{ org[1] }}</h2>
                     <h4>{{ org[2] }}</h4>
+                    <h4>{{ org[9] }}</h4>
                     <!-- Dentro del p se mostrara una breve descripcion sobre la organizacion -->
                     <p>{{ org[3] }}
                     </p>
@@ -89,5 +91,25 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+            <!-- footer -->
+       </div>     
+	<div class="row mx-0 centrar" id="footer">
+        <div class="col-12" id="textoFooter">
+            <h4>Términos y condiciones</h4>
+            <p>Al utilizar nuestro sitio web, usted acepta cumplir con nuestros términos y condiciones. No nos hacemos responsables por cualquier daño que pueda resultar del uso del sitio.</p>
+            <br><h4>Aviso de privacidad</h4>
+            <p>Nos comprometemos a proteger su privacidad y a utilizar su información únicamente para fines específicos relacionados con nuestro sitio web. No compartiremos su información con terceros sin su consentimiento.</p>
+        </div>
+    </div>
+    <!-- boton para llamada de emergencia-->
+    <div class="row">
+        <div class="col">
+            <button onclick="window.location.href = 'tel:800 10 84 053'" class="botonEmergencia">
+                <p>Llamada de</p>
+                <p><b>emergencia</b></p>
+            </button>
+        </div>
+    </div>   
 </body>
 </html>

@@ -24,6 +24,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 <body>
     <header>
@@ -48,7 +49,7 @@
 
    <a href="https://www.accuweather.com/es/mx/monterrey/244681/daily-weather-forecast/244681"><div id="miDiv"><p>&nbsp&nbspX</p></div></a>
    <script src="js/codigo.js"></script>
-    
+   <div class="content-wrapper">
     <div id="contenidoTest">
         <h1>Test de violencia</h1>
 
@@ -58,192 +59,107 @@
     
                 <div class="tab">
                     <div class="pregunta1">
-                        <h2>¿Te humilla, insulta o menosprecia?</h2>
-                        <input type="radio" name="p1" value=0 required>
-                        <label for="p1">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p1" value="1" required>
-                        <label for="p1">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p1" value="2" required>
-                        <label for="p1">Sucede constantemente</label><br>
+                        <h2>¿Tu pareja te humilla o te menosprecia constantemente, o te critica o insulta regularmente?</h2>
+                        <input type="radio" name="psi1" value=1 required>
+                        <label for="psi1">Sí</label><br>
+                        <input type="radio" name="psi1" value=0 required>
+                        <label for="psi1">No</label><br>
                     </div>
                     <div class="pregunta2">
-                        <h2>¿Se burla o hace comentarios despectivos sobre tu apariencia física, inteligencia o habilidades?</h2>
-                        <input type="radio" name="p2" value=0 required>
-                        <label for="p2">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p2" value="1" required>
-                        <label for="p2">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p2" value="2" required>
-                        <label for="p2">Sucede constantemente</label><br>
+                        <h2>
+¿Tu pareja te aísla o te excluye de eventos o actividades importantes, como bodas o la escuela?</h2>
+                        <input type="radio" name="psi2" value=1 required>
+                        <label for="psi2">Sí</label><br>
+                        <input type="radio" name="psi2" value=0 required>
+                        <label for="psi2">No</label><br>
                     </div>
                 </div>
 
                 <div class="tab">
                     <div class="pregunta3">
-                        <h2>¿Te ha agredido físicamente, como golpearte, empujarte o jalarte del cabello?</h2>
-                        <input type="radio" name="p3" value=0 required>
-                        <label for="p3">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p3" value="1" required>
-                        <label for="p3">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p3" value="2" required>
-                        <label for="p3">Sucede constantemente</label><br>
+                        <h2>¿Tu pareja te ha lastimado o amenazado a ti o a tus hijos de alguna manera física, como golpearte, patearte o restringirte?</h2>
+                        <input type="radio" name="fis1" value=1 required>
+                        <label for="fis1">Sí</label><br>
+                        <input type="radio" name="fis1" value=0 required>
+                        <label for="fis1">No</label><br>
                     </div>
                     <div class="pregunta4">
-                        <h2>¿Te ha lastimado con objetos, como tirar cosas hacia ti o golpearte con ellos?</h2>
-                        <input type="radio" name="p4" value=0 required>
-                        <label for="p4">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p4" value="1" required>
-                        <label for="p4">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p4" value="2" required>
-                        <label for="p4">Sucede constantemente</label><br>
+                        <h2>¿Tu pareja alguna vez te ha mordido, empujado, pellizcado, sacudido o ahogado?</h2>
+                        <input type="radio" name="fis2" value=1 required>
+                        <label for="fis2">Sí</label><br>
+                        <input type="radio" name="fis2" value=0 required>
+                        <label for="fis2">No</label><br>
                     </div>
                 </div>
 
                 <div class="tab">
                     <div class="pregunta5">
-                        <h2>¿Ha destruido o dañado tus pertenencias personales o compartidas intencionalmente?</h2>
-                        <input type="radio" name="p5" value=0 required>
-                        <label for="p5">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p5" value="1" required>
-                        <label for="p5">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p5" value="2" required>
-                        <label for="p5">Sucede constantemente</label><br>
+                        <h2>¿Tu pareja alguna vez te ha forzado o acosado para que tengas relaciones sexuales con él o con otras personas, o te ha hecho participar en actividades sexuales con las que te sientes incómoda?</h2>
+                        <input type="radio" name="se1" value=1 required>
+                        <label for="se1">Sí</label><br>
+                        <input type="radio" name="se1" value=0 required>
+                        <label for="se1">No</label><br>
                     </div>
                     <div class="pregunta6">
-                        <h2>¿Ha vendido o regalado tus bienes sin tu consentimiento?</h2>
-                        <input type="radio" name="p6" value=0 required>
-                        <label for="p6">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p6" value="1" required>
-                        <label for="p6">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p6" value="2" required>
-                        <label for="p6">Sucede constantemente</label><br>
+                        <h2>¿Has sido objeto de acoso sexual por parte de tu pareja, como ser forzada a enviar mensajes o imágenes sexuales en contra de tu voluntad, ser tocada sexualmente sin tu permiso, o ser forzada a tener relaciones sexuales a cambio de dinero?</h2>
+                        <input type="radio" name="se2" value=1 required>
+                        <label for="se2">Sí</label><br>
+                        <input type="radio" name="se2" value=0 required>
+                        <label for="se2">No</label><br>
                     </div>
                 </div>
 
                 <div class="tab">
                     <div class="pregunta7">
-                        <h2>¿Te impide tener acceso a tus propios recursos económicos, como cuentas bancarias, salarios o propiedades?</h2>
-                        <input type="radio" name="p7" value=0 required>
-                        <label for="p7">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p7" value="1" required>
-                        <label for="p7">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p7" value="2" required>
-                        <label for="p7">Sucede constantemente</label><br>
+                        <h2>¿Tu pareja te retiene el dinero para que no puedas comprar alimentos o ropa, o te impide obtener un empleo o acceder a tu cuenta bancaria?</h2>
+                        <input type="radio" name="fin1" value=1 required>
+                        <label for="fin1">Sí</label><br>
+                        <input type="radio" name="fin1" value=0 required>
+                        <label for="fin1">No</label><br>
                     </div>
                     <div class="pregunta8">
-                        <h2>¿Te obliga a entregarle tu salario o dinero, y controla cómo lo gastas?</h2>
-                        <input type="radio" name="p8" value=0 required>
-                        <label for="p8">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p8" value="1" required>
-                        <label for="p8">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p8" value="2" required>
-                        <label for="p8">Sucede constantemente</label><br>
+                        <h2>¿Tu pareja te obliga a firmar préstamos, te hace sacar préstamos, o te impide sentirte independiente o tomar tus propias decisiones?</h2>
+                        <input type="radio" name="fin2" value=1 required>
+                        <label for="fin2">Sí</label><br>
+                        <input type="radio" name="fin2" value=0 required>
+                        <label for="fin2">No</label><br>
                     </div>
                 </div>
     
                 <div class="tab">
                     <div class="pregunta9">
-                        <h2>¿Te ha forzado a tener relaciones sexuales o a realizar actos sexuales en contra de tu voluntad?</h2>
-                        <input type="radio" name="p9" value=0 required>
-                        <label for="p9">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p9" value="1" required>
-                        <label for="p9">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p9" value="2" required>
-                        <label for="p9">Sucede constantemente</label><br>
+                        <h2>¿Tu pareja te hace sentir culpable, te amenaza con hacerse daño a sí mismo, te culpa injustamente de su dependencia de drogas o alcohol, o de los fracasos en su vida?</h2>
+                        <input type="radio" name="emo1" value=1 required>
+                        <label for="emo1">Sí</label><br>
+                        <input type="radio" name="emo1" value=0 required>
+                        <label for="emo1">No</label><br>
                     </div>
                     <div class="pregunta10">
-                        <h2>¿Te ha presionado o manipulado para que realices prácticas sexuales que te resultan incómodas o desagradables?</h2>
-                        <input type="radio" name="p10" value=0 required>
-                        <label for="p10">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p10" value="1" required>
-                        <label for="p10">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p10" value="2" required>
-                        <label for="p10">Sucede constantemente</label><br>
-                    </div> 
+                        <h2>¿Tu pareja controla tu comportamiento, como verificar constantemente dónde estás, seguirte, o acusarte injustamente de coquetear o tener aventuras con otras personas?</h2>
+                        <input type="radio" name="emo2" value=1 required>
+                        <label for="emo2">Sí</label><br>
+                        <input type="radio" name="emo2" value=0 required>
+                        <label for="emo2">No</label><br>
+                    </div>
                 </div>
 
                 <div class="tab">
                     <div class="pregunta11">
-                        <h2>¿Te ha obligado o presionado para quedar embarazada en contra de tu voluntad?</h2>
-                        <input type="radio" name="p11" value=0 required>
-                        <label for="p11">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p11" value="1" required>
-                        <label for="p11">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p11" value="2" required>
-                        <label for="p11">Sucede constantemente</label><br>
+                        <h2>¿Has sido castigada por tu familia o comunidad por hacer cosas que no están en consonancia con las creencias tradicionales de su cultura, como resistirte a un matrimonio arreglado o forzado, o elegir a un compañero de una cultura o religión diferente?</h2>
+                        <input type="radio" name="hon1" value=1 required>
+                        <label for="hon1">Sí</label><br>
+                        <input type="radio" name="hon1" value=0 required>
+                        <label for="hon1">No</label><br>
                     </div>
                     <div class="pregunta12">
-                        <h2>¿Te ha impedido usar métodos anticonceptivos o interrumpido su uso sin tu consentimiento?</h2>
-                        <input type="radio" name="p12" value=0 required>
-                        <label for="p12">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p12" value="1" required>
-                        <label for="p12">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p12" value="2" required>
-                        <label for="p12">Sucede constantemente</label><br>
-                    </div> 
+                        <h2>¿Te impide tu pareja vivir tu vida aplicándote reglas no deseadas bajo el pretexto de normas religiosas o culturales?</h2>
+                        <input type="radio" name="hon2" value=1 required>
+                        <label for="hon2">Sí</label><br>
+                        <input type="radio" name="hon2" value=0 required>
+                        <label for="hon2">No</label><br>
+                    </div>
                 </div>
 
-                <div class="tab">
-                    <div class="pregunta13">
-                        <h2>¿Has sido maltratada, humillada o desatendida durante el embarazo, parto o puerperio por parte de profesionales de la salud?</h2>
-                        <input type="radio" name="p13" value=0 required>
-                        <label for="p13">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p13" value="1" required>
-                        <label for="p13">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p13" value="2" required>
-                        <label for="p13">Sucede constantemente</label><br>
-                    </div>
-                    <div class="pregunta14">
-                        <h2>¿Se te ha negado el derecho a recibir información clara y completa sobre tus opciones de atención durante el embarazo y el parto?</h2>
-                        <input type="radio" name="p14" value=0 required>
-                        <label for="p14">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p14" value="1" required>
-                        <label for="p14">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p14" value="2" required>
-                        <label for="p14">Sucede constantemente</label><br>
-                    </div> 
-                </div>
-
-                <div class="tab">
-                    <div class="pregunta15">
-                        <h2>¿Has recibido amenazas de muerte por parte de tu pareja, expareja o alguien cercano a ti?</h2>
-                        <input type="radio" name="p15" value=0 required>
-                        <label for="p15">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p15" value="1" required>
-                        <label for="p15">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p15" value="2" required>
-                        <label for="p15">Sucede constantemente</label><br>
-                    </div>
-                    <div class="pregunta16">
-                        <h2>¿Te has sentido en peligro de ser asesinada por tu pareja, expareja o alguien cercano a ti?</h2>
-                        <input type="radio" name="p16" value=0 required>
-                        <label for="p16">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p16" value="1" required>
-                        <label for="p16">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p16" value="2" required>
-                        <label for="p16">Sucede constantemente</label><br>
-                    </div> 
-                </div>
-
-                <div class="tab">
-                    <div class="pregunta17">
-                        <h2>¿Has sido víctima de actitudes o comentarios sexistas, misóginos o discriminatorios por parte de tu pareja, expareja o entorno cercano?</h2>
-                        <input type="radio" name="p17" value=0 required>
-                        <label for="p17">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p17" value="1" required>
-                        <label for="p17">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p17" value="2" required>
-                        <label for="p17">Sucede constantemente</label><br>
-                    </div>
-                    <div class="pregunta18">
-                        <h2>¿Se te ha tratado como inferior o incapaz en función de tu género, tanto en el ámbito público como en el privado?</h2>
-                        <input type="radio" name="p18" value=0 required>
-                        <label for="p18">Nunca ha sucedido</label><br>
-                        <input type="radio" name="p18" value="1" required>
-                        <label for="p18">Ha sucedido de 1 a 3 veces</label><br>
-                        <input type="radio" name="p18" value="2" required>
-                        <label for="p18">Sucede constantemente</label><br>
-                    </div> 
-                </div>
 
                 <div class="row centrar">
                     <div class="col">
@@ -253,19 +169,16 @@
             </form>  
         </div>
     </div>
-
+    </div>
      <!-- footer -->
-     <footer>
-        <div class="banner">
-            <img src='{{url_for('static', filename="images/banner.png")}}' alt="banner Nunca Mas" class="imgBanner">
-        </div>
-        <div id="textoFooter">
+	<div class="row mx-0 centrar" id="footer">
+        <div class="col-12" id="textoFooter">
             <h4>Términos y condiciones</h4>
             <p>Al utilizar nuestro sitio web, usted acepta cumplir con nuestros términos y condiciones. No nos hacemos responsables por cualquier daño que pueda resultar del uso del sitio.</p>
             <br><h4>Aviso de privacidad</h4>
             <p>Nos comprometemos a proteger su privacidad y a utilizar su información únicamente para fines específicos relacionados con nuestro sitio web. No compartiremos su información con terceros sin su consentimiento.</p>
         </div>
-    </footer>
+    </div>
    
     <!-- boton para llamada de emergencia-->
     <div class="row">
