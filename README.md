@@ -1,23 +1,26 @@
----
-title: Flask
-description: A popular minimal server framework for Python
-tags:
-  - python
-  - flask
----
+# NuncaMas
+Proyecto "Nunca Más" realizado para la clase de Proyecto Integrador de Ingeniería de Software
 
-# Python Flask Example
+Este proyecto está siendo realizado en colaboración con alumnos de LAED y Accountabilty Lab.
 
-This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/) app that serves a simple JSON response.
+El objetivo del sitio web es que sirva como repositorio de recursos importantes para combatir la violencia de género.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/zUcpux)
+ESTRUCTURA DEL REPOSITORIO
 
-## ✨ Features
+. -> Carpeta raíz, aquí se guardan las páginas .html del sitio
 
-- Python
-- Flask
+css -> Carpeta para guardar los archivos de CSS utilizados por las páginas
 
-## 💁‍♀️ How to use
+js -> Carpeta para guardar los archivos de JavaScript usados por las páginas
 
-- Install Python requirements `pip install -r requirements.txt`
-- Start the server for development `python3 main.py`
+imagenes -> Carpeta para guardar todas las imágenes usadas en el sitio
+
+extras -> Carpeta para guardar archivos varios y tenerlos sincronizados (archivos.sql, documentos de diseño, etc...)
+
+PAGINAS DEL SITIO
+
+index (WIP) -> Página principal, incluye las escuderías
+
+contactanos -> Página donde se encuentran la red de contactos
+
+informate (WIP) -> Página que contendrá información de expertos sobre la violencia de género. 
