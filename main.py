@@ -208,16 +208,15 @@ def editarOrgs(idOrg):
 
 @app.route('/orgsBorrar/<string:idOrg>', methods=['GET', 'POST']) #Manda del botón borrar de orgsEditar
 def borrarOrgs(idOrg): 
-    if request.method == 'POST':
-
-        # Borrar imagen asociada con este registro
-        with connection.cursor() as cur:
+    # Borrar imagen asociada con este registro
+    with connection.cursor() as cur:
+        if request.method == 'POST':
             cur.execute("SELECT logo FROM organizacion where idOrganizacion=%s", (idOrg,))
             a = cur.fetchall()
             img = a[0][0]
-            filepath = os.path.join(app.root_path, 'static/images', img)
-            if os.path.exists(filepath):
-                os.remove(filepath)
+            #filepath = os.path.join(app.root_path, 'static/images', img)
+            #if os.path.exists(filepath):
+            #    os.remove(filepath)
             
 
             cur.execute("DELETE FROM organizacion WHERE idOrganizacion=%s",(idOrg,))
