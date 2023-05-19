@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
-import pymysql.cursors
+import pymysql
 from werkzeug.utils import secure_filename
 import os, io
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
@@ -208,9 +208,10 @@ def editarOrgs(idOrg):
 
 @app.route('/orgsBorrar/<string:idOrg>', methods=['GET', 'POST']) #Manda del botón borrar de orgsEditar
 def borrarOrgs(idOrg): 
-    # Borrar imagen asociada con este registro
-    with connection.cursor() as cur:
-        if request.method == 'POST':
+    if request.method == 'POST':
+
+        # Borrar imagen asociada con este registro
+        with connection.cursor() as cur:
             cur.execute("SELECT logo FROM organizacion where idOrganizacion=%s", (idOrg,))
             a = cur.fetchall()
             img = a[0][0]
