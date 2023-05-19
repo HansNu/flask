@@ -21,12 +21,7 @@ db_config = {
 }
 
 # connection
-connection = pymysql.connect(host=db_config['host'],
-                             user=db_config['user'],
-                             password=db_config['password'],
-                             db=db_config['db'],
-                             port=db_config['port'],
-                             cursorclass=pymysql.cursors.DictCursor)
+connection = pymysql.connect(**db_config)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -41,11 +36,11 @@ class Admin(UserMixin):
 
 @login_manager.user_loader
 def load_user(admin_id):
-    cur = connection.cursor()
-    cur.execute("SELECT * FROM admin WHERE id = %s", [admin_id])
-    data = cur.fetchone()
-    if data is None:
-        return None
+    with connection.cursor() as cur:
+        cur.execute("SELECT * FROM admin WHERE id = %s", [admin_id])
+        data = cur.fetchone()
+        if data is None:
+            return None
     cur.close()
     # id, username, and password are the fields from your database
     return Admin(data[0], data[1], data[2])
@@ -59,19 +54,19 @@ def index():
 @app.route('/contactos', methods=['GET', 'POST'])
 def contactos():
     contactos = []
-    cur = connection.cursor()
-    cur.execute("select contacto.idContacto, contacto.nombre, apellido, contacto.telefono, contacto.correo, organizacion.nombre, contactoOrg.rol from contacto, contactoOrg, organizacion where contacto.idContacto = contactoOrg.idContacto and contactoOrg.idOrganizacion = organizacion.idOrganizacion")
-    contactos = cur.fetchall()
-    cur.connection.commit()
+    with connection.cursor() as cur:
+        cur.execute("select contacto.idContacto, contacto.nombre, apellido, contacto.telefono, contacto.correo, organizacion.nombre, contactoOrg.rol from contacto, contactoOrg, organizacion where contacto.idContacto = contactoOrg.idContacto and contactoOrg.idOrganizacion = organizacion.idOrganizacion")
+        contactos = cur.fetchall()
+        cur.connection.commit()
     cur.close()
     return render_template('contactos.html', contactos=contactos)
 
 @app.route('/organizaciones')
 def organizaciones():
-    cur = connection.cursor()
-    cur.execute("SELECT * FROM organizacion")
-    orgs = cur.fetchall()
-    cur.connection.commit()
+    with connection.cursor() as cur:
+        cur.execute("SELECT * FROM organizacion")
+        orgs = cur.fetchall()
+        cur.connection.commit()
     cur.close()
 
     return render_template('organizaciones.html', orgs=orgs)
@@ -115,21 +110,21 @@ def resultados():
         ### Consultas dependiendo de resultados
         orgs = []
         processed_ids = set()
-        cur = connection.cursor()
-        # Iterar en cada tipo de violencia
-        for i in range(len(resultado)):
-            # Si hubo respuestas validas, buscar organizaciones pertinentes
-            if resultado[i] > 0:
-                numV = int(i)+1
-                cur.execute("SELECT idOrganizacion, organizacion.nombre, tipo, descripcion, ubicacion, telefono, correo, sitio, logo, tiposViolencia.nombre FROM organizacion, orgViolencia, tiposViolencia WHERE idOrganizacion = idOrg AND idViolencia = id AND id = %s", (numV,))
-                a = cur.fetchall()
-                # Si no hay ninguna organizacion registrada con ese tipo de violencia, no agregar tupla vacía
-                if a:
-                    # Verificar que no se repitan organizaciones
-                    org_id = a[0][0]
-                    if org_id not in processed_ids:
-                        processed_ids.add(org_id)  # Add the ID to the set of processed IDs
-                        orgs.append(a)
+        with connection.cursor() as cur:
+            # Iterar en cada tipo de violencia
+            for i in range(len(resultado)):
+                # Si hubo respuestas validas, buscar organizaciones pertinentes
+                if resultado[i] > 0:
+                    numV = int(i)+1
+                    cur.execute("SELECT idOrganizacion, organizacion.nombre, tipo, descripcion, ubicacion, telefono, correo, sitio, logo, tiposViolencia.nombre FROM organizacion, orgViolencia, tiposViolencia WHERE idOrganizacion = idOrg AND idViolencia = id AND id = %s", (numV,))
+                    a = cur.fetchall()
+                    # Si no hay ninguna organizacion registrada con ese tipo de violencia, no agregar tupla vacía
+                    if a:
+                        # Verificar que no se repitan organizaciones
+                        org_id = a[0][0]
+                        if org_id not in processed_ids:
+                            processed_ids.add(org_id)  # Add the ID to the set of processed IDs
+                            orgs.append(a)
         
         return render_template('resultados.html', resultado=resultado, orgs=orgs)
     
@@ -139,15 +134,15 @@ def loginAdmin():
         username = request.form["username"]
         password = request.form["password"]
         
-        cur = connection.cursor()
-        cur.execute("SELECT * FROM admin WHERE username = %s", [username])
-        data = cur.fetchone()
+        with connection.cursor() as cur:
+            cur.execute("SELECT * FROM admin WHERE username = %s", [username])
+            data = cur.fetchone()
 
-        if data is None:
-            flash("Usuario no existe. Intente de nuevo")
-            return redirect(url_for('loginAdmin'))
+            if data is None:
+                flash("Usuario no existe. Intente de nuevo")
+                return redirect(url_for('loginAdmin'))
 
-        admin = Admin(data[0], data[1], data[2])
+            admin = Admin(data[0], data[1], data[2])
 
         cur.close()
         if admin.password != password:
@@ -166,22 +161,22 @@ def logout():
 
 @app.route('/organizacionesAdmin', methods=['GET', 'POST'])
 def organizacionesAdmin():
-    cur = connection.cursor()
-    cur.execute("SELECT * FROM organizacion")
-    orgs = cur.fetchall()
-    cur.connection.commit()
+    with connection.cursor() as cur:
+        cur.execute("SELECT * FROM organizacion")
+        orgs = cur.fetchall()
+        cur.connection.commit()
     cur.close()
 
     return render_template('organizacionesAdmin.html', orgs=orgs)
 
 @app.route('/orgsCambios/<string:idOrg>', methods=['GET', 'POST']) #Para desplegar página con inputs
 def editarAdmin(idOrg):
-    cur = connection.cursor()
+    with connection.cursor() as cur:
     #idOrg = request.args.get('idOrg')
-    cur.execute("SELECT * FROM organizacion WHERE idOrganizacion=%s", (idOrg,))
-    cur.connection.commit()
-    orgs = cur.fetchall()
-    org = orgs[0]
+        cur.execute("SELECT * FROM organizacion WHERE idOrganizacion=%s", (idOrg,))
+        cur.connection.commit()
+        orgs = cur.fetchall()
+        org = orgs[0]
     cur.close()
 
     return render_template('orgsEditar.html', org=org) #Regresa la bd actualizada
@@ -191,46 +186,46 @@ def editarAdmin(idOrg):
 # Ruta para editar info de organizaciones como admin
 @app.route('/orgsEditar/<string:idOrg>', methods=['GET', 'POST'])
 def editarOrgs(idOrg):
-    cur = connection.cursor()
-    if request.method == 'POST':
-        nomOrg = request.form['nomOrg']
-        tipoOrg = request.form['tipoOrg']
-        descOrg = request.form['descOrg']
-        telOrg = request.form['telOrg']
-        correoOrg = request.form['correoOrg']
-        sitioOrg = request.form['sitioOrg']
-        cur.execute("UPDATE organizacion SET nombre=%s, tipo=%s, descripcion=%s, telefono=%s, correo=%s, sitio=%s WHERE idOrganizacion=%s", (nomOrg,tipoOrg, descOrg, telOrg, correoOrg, sitioOrg, idOrg,))
-        cur.connection.commit()
+    with connection.cursor() as cur:
+        if request.method == 'POST':
+            nomOrg = request.form['nomOrg']
+            tipoOrg = request.form['tipoOrg']
+            descOrg = request.form['descOrg']
+            telOrg = request.form['telOrg']
+            correoOrg = request.form['correoOrg']
+            sitioOrg = request.form['sitioOrg']
+            cur.execute("UPDATE organizacion SET nombre=%s, tipo=%s, descripcion=%s, telefono=%s, correo=%s, sitio=%s WHERE idOrganizacion=%s", (nomOrg,tipoOrg, descOrg, telOrg, correoOrg, sitioOrg, idOrg,))
+            cur.connection.commit()
 
-        cur.execute("SELECT * FROM organizacion")
-        orgs = cur.fetchall()
-        cur.connection.commit()
-        cur.close()
+            cur.execute("SELECT * FROM organizacion")
+            orgs = cur.fetchall()
+            cur.connection.commit()
+            cur.close()
 
-        return render_template('organizacionesAdmin.html', orgs=orgs) #Regresa la bd actualizada
-    else: 
-        return "Acceso no valido"
+            return render_template('organizacionesAdmin.html', orgs=orgs) #Regresa la bd actualizada
+        else: 
+            return "Acceso no valido"
 
 @app.route('/orgsBorrar/<string:idOrg>', methods=['GET', 'POST']) #Manda del botón borrar de orgsEditar
 def borrarOrgs(idOrg): 
     if request.method == 'POST':
 
         # Borrar imagen asociada con este registro
-        cur = connection.cursor()
-        cur.execute("SELECT logo FROM organizacion where idOrganizacion=%s", (idOrg,))
-        a = cur.fetchall()
-        img = a[0][0]
-        filepath = os.path.join(app.root_path, 'static/images', img)
-        if os.path.exists(filepath):
-            os.remove(filepath)
-        
+        with connection.cursor() as cur:
+            cur.execute("SELECT logo FROM organizacion where idOrganizacion=%s", (idOrg,))
+            a = cur.fetchall()
+            img = a[0][0]
+            filepath = os.path.join(app.root_path, 'static/images', img)
+            if os.path.exists(filepath):
+                os.remove(filepath)
+            
 
-        cur.execute("DELETE FROM organizacion WHERE idOrganizacion=%s",(idOrg,))
-        cur.connection.commit()
+            cur.execute("DELETE FROM organizacion WHERE idOrganizacion=%s",(idOrg,))
+            cur.connection.commit()
 
-        cur.execute("SELECT * FROM organizacion")
-        orgs = cur.fetchall()
-        cur.connection.commit()
+            cur.execute("SELECT * FROM organizacion")
+            orgs = cur.fetchall()
+            cur.connection.commit()
         cur.close()
 
         return render_template('organizacionesAdmin.html', orgs=orgs) #Regresa al inicio con la bd actualizada
@@ -243,38 +238,38 @@ def desplegarCampos():
 
 @app.route('/agregarOrgs', methods=['GET', 'POST'])
 def nuevaOrg():
-    cur = connection.cursor()
-    if request.method == 'POST':
-        nomOrg = request.form['nomOrg']
-        tipoOrg = request.form['tipoOrg']
-        descOrg = request.form['descOrg']
-        telOrg = request.form['telOrg']
-        correoOrg = request.form['correoOrg']
-        sitioOrg = request.form['sitioOrg']
-        imgOrg = ""
+    with connection.cursor() as cur:
+        if request.method == 'POST':
+            nomOrg = request.form['nomOrg']
+            tipoOrg = request.form['tipoOrg']
+            descOrg = request.form['descOrg']
+            telOrg = request.form['telOrg']
+            correoOrg = request.form['correoOrg']
+            sitioOrg = request.form['sitioOrg']
+            imgOrg = ""
 
-        if 'imgOrg' in request.files:
-            file = request.files['imgOrg']
-            # Si no se sube arhcivo regrsea arcihvo vacio sin nombre
-            if file.filename != '':
-                
-                # Revisar que el archivo sea del tipo que dice
-                if is_image_file(file):
-                    # Guardar el archivo con el nombre de su organizacion
-                    filename = secure_filename(nomOrg)
-                    file.save('./static/images/'+filename)
-                    imgOrg = filename
-                else:
-                    return render_template('agregarOrgs.html', error='noValido')
-                    #return("<h1>FORMATO DE IMAGEN NO VALIDO</h1><p>Solo se permiten archivos tipo PNG, JPG O JPEG</p>")
+            if 'imgOrg' in request.files:
+                file = request.files['imgOrg']
+                # Si no se sube arhcivo regrsea arcihvo vacio sin nombre
+                if file.filename != '':
+                    
+                    # Revisar que el archivo sea del tipo que dice
+                    if is_image_file(file):
+                        # Guardar el archivo con el nombre de su organizacion
+                        filename = secure_filename(nomOrg)
+                        file.save('./static/images/'+filename)
+                        imgOrg = filename
+                    else:
+                        return render_template('agregarOrgs.html', error='noValido')
+                        #return("<h1>FORMATO DE IMAGEN NO VALIDO</h1><p>Solo se permiten archivos tipo PNG, JPG O JPEG</p>")
 
-        cur.execute("INSERT INTO organizacion (nombre, tipo, descripcion, telefono, correo, sitio, logo) VALUES (%s, %s, %s, %s, %s, %s, %s)", (nomOrg,tipoOrg, descOrg, telOrg, correoOrg, sitioOrg,imgOrg,))
+            cur.execute("INSERT INTO organizacion (nombre, tipo, descripcion, telefono, correo, sitio, logo) VALUES (%s, %s, %s, %s, %s, %s, %s)", (nomOrg,tipoOrg, descOrg, telOrg, correoOrg, sitioOrg,imgOrg,))
+            cur.connection.commit()
+
+        cur.execute("SELECT * FROM organizacion")
+        orgs = cur.fetchall()
         cur.connection.commit()
-
-    cur.execute("SELECT * FROM organizacion")
-    orgs = cur.fetchall()
-    cur.connection.commit()
-    cur.close()
+        cur.close()
 
     return render_template('organizacionesAdmin.html', orgs=orgs) #Regresa la bd actualizada  
 
