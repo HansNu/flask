@@ -12,11 +12,14 @@ MAX_CONTENT_LENGTH = 2 * 1000 * 1000 # Cambiar primer numero por numero de MB de
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 
 ## Configuracion de la BD
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'nuncaMas'
-app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
+# MySQL configurations
+db_config = {
+    'host': os.getenv('MYSQLHOST'),
+    'user': os.getenv('MYSQLUSER'),
+    'password': os.getenv('MYSQLPASSWORD'),
+    'db': os.getenv('MYSQLDATABASE'),
+    'port': int(os.getenv('MYSQLPORT'))  # make sure the port is an integer
+}
 
 login_manager = LoginManager()
 login_manager.init_app(app)
