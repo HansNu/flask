@@ -215,8 +215,8 @@ def borrarOrgs(idOrg):
             a = cur.fetchall()
             img = a[0][0]
             #filepath = os.path.join(app.root_path, 'static/images', img)
-            #if os.path.exists(filepath):
-            #    os.remove(filepath)
+            if os.path.exists(filepath):
+                os.remove(filepath)
             
 
             cur.execute("DELETE FROM organizacion WHERE idOrganizacion=%s",(idOrg,))
