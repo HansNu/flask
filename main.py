@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
-from flask_mysqldb import MySQL
+import pymysql
 from werkzeug.utils import secure_filename
 import os, io
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
