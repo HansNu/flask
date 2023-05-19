@@ -5,7 +5,6 @@ import os, io
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 
 app = Flask(__name__)
-mysql = MySQL(app)
 
 MAX_CONTENT_LENGTH = 2 * 1000 * 1000 # Cambiar primer numero por numero de MB desados (1 = 1MB)
 
@@ -21,6 +20,14 @@ db_config = {
     'port': int(os.getenv('MYSQLPORT'))  # make sure the port is an integer
 }
 
+# connection
+connection = pymysql.connect(host=db_config['host'],
+                             user=db_config['user'],
+                             password=db_config['password'],
+                             db=db_config['db'],
+                             port=db_config['port'],
+                             cursorclass=pymysql.cursors.DictCursor)
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -34,7 +41,7 @@ class Admin(UserMixin):
 
 @login_manager.user_loader
 def load_user(admin_id):
-    cur = mysql.connection.cursor()
+    cur = connection.cursor()
     cur.execute("SELECT * FROM admin WHERE id = %s", [admin_id])
     data = cur.fetchone()
     if data is None:
@@ -52,7 +59,7 @@ def index():
 @app.route('/contactos', methods=['GET', 'POST'])
 def contactos():
     contactos = []
-    cur = mysql.connection.cursor()
+    cur = connection.cursor()
     cur.execute("select contacto.idContacto, contacto.nombre, apellido, contacto.telefono, contacto.correo, organizacion.nombre, contactoOrg.rol from contacto, contactoOrg, organizacion where contacto.idContacto = contactoOrg.idContacto and contactoOrg.idOrganizacion = organizacion.idOrganizacion")
     contactos = cur.fetchall()
     cur.connection.commit()
@@ -61,7 +68,7 @@ def contactos():
 
 @app.route('/organizaciones')
 def organizaciones():
-    cur = mysql.connection.cursor()
+    cur = connection.cursor()
     cur.execute("SELECT * FROM organizacion")
     orgs = cur.fetchall()
     cur.connection.commit()
@@ -108,7 +115,7 @@ def resultados():
         ### Consultas dependiendo de resultados
         orgs = []
         processed_ids = set()
-        cur = mysql.connection.cursor()
+        cur = connection.cursor()
         # Iterar en cada tipo de violencia
         for i in range(len(resultado)):
             # Si hubo respuestas validas, buscar organizaciones pertinentes
@@ -132,7 +139,7 @@ def loginAdmin():
         username = request.form["username"]
         password = request.form["password"]
         
-        cur = mysql.connection.cursor()
+        cur = connection.cursor()
         cur.execute("SELECT * FROM admin WHERE username = %s", [username])
         data = cur.fetchone()
 
@@ -159,7 +166,7 @@ def logout():
 
 @app.route('/organizacionesAdmin', methods=['GET', 'POST'])
 def organizacionesAdmin():
-    cur = mysql.connection.cursor()
+    cur = connection.cursor()
     cur.execute("SELECT * FROM organizacion")
     orgs = cur.fetchall()
     cur.connection.commit()
@@ -169,7 +176,7 @@ def organizacionesAdmin():
 
 @app.route('/orgsCambios/<string:idOrg>', methods=['GET', 'POST']) #Para desplegar página con inputs
 def editarAdmin(idOrg):
-    cur = mysql.connection.cursor()
+    cur = connection.cursor()
     #idOrg = request.args.get('idOrg')
     cur.execute("SELECT * FROM organizacion WHERE idOrganizacion=%s", (idOrg,))
     cur.connection.commit()
@@ -184,7 +191,7 @@ def editarAdmin(idOrg):
 # Ruta para editar info de organizaciones como admin
 @app.route('/orgsEditar/<string:idOrg>', methods=['GET', 'POST'])
 def editarOrgs(idOrg):
-    cur = mysql.connection.cursor()
+    cur = connection.cursor()
     if request.method == 'POST':
         nomOrg = request.form['nomOrg']
         tipoOrg = request.form['tipoOrg']
@@ -209,7 +216,7 @@ def borrarOrgs(idOrg):
     if request.method == 'POST':
 
         # Borrar imagen asociada con este registro
-        cur = mysql.connection.cursor()
+        cur = connection.cursor()
         cur.execute("SELECT logo FROM organizacion where idOrganizacion=%s", (idOrg,))
         a = cur.fetchall()
         img = a[0][0]
@@ -236,7 +243,7 @@ def desplegarCampos():
 
 @app.route('/agregarOrgs', methods=['GET', 'POST'])
 def nuevaOrg():
-    cur = mysql.connection.cursor()
+    cur = connection.cursor()
     if request.method == 'POST':
         nomOrg = request.form['nomOrg']
         tipoOrg = request.form['tipoOrg']
